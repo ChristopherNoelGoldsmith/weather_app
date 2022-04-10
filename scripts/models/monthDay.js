@@ -1,4 +1,19 @@
+export const createCalWeek = function (day) {
+  let date = new Date();
+
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  console.log(day);
+  date = new Date(`${month} ${day}, ${year} 07:00:00`);
+  date = date.getDay();
+  console.log(date);
+
+  return date;
+};
+
 export const dayOfWeek = (el) => {
+  el = el * 1;
+
   switch (el) {
     case 0:
       return 'Sunday';
@@ -27,7 +42,9 @@ export const dayOfWeek = (el) => {
   }
 };
 
-export const getMonth = (el) => {
+export const getMonthString = (el) => {
+  el = el * 1;
+
   switch (el) {
     case 1:
       return 'Janurary';

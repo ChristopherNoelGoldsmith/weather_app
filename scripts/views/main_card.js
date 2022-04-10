@@ -4,14 +4,19 @@ export class MainCard {
     today = 'NA',
     month = 'NA',
     day = 'NA',
-    temp = 'NA'
+    temp = 'NA',
+    desc = 'Sunny',
+    icon = 'c02n'
   ) {
     this.time = time;
     this.today = today;
     this.month = month;
     this.day = day;
     this.temp = temp;
+    this.desc = desc;
+    this.icon = icon;
   }
+  //<i class="fa-solid fa-cloud-bolt"></i>
 
   getTemplate = () => {
     return `
@@ -22,9 +27,13 @@ export class MainCard {
         <span class="weekday">${this.today}</span>
         <span class="date">${this.month}/${this.day}</span>
       </div>
-      <i class="fa-solid fa-cloud-bolt"></i>
-      <div class="temp">
-        <span class="high">${this.temp} Degrees</span>
+      <img src="https://www.weatherbit.io/static/img/icons/${this.icon}.png" alt="">
+      
+           <div class="temp">
+
+        <span class="desc">${this.desc}</span>
+        
+        <span class="high">${this.temp} F</span>
         
       </div>
     </div>

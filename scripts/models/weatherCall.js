@@ -8,10 +8,11 @@ const options = {
   },
 };
 
-export function getLatLon() {
+export function getLatLon(position = 'getCurrentPosition') {
+  // mutate position depending on requirements to give proper city
   try {
     return new Promise((res, rej) => {
-      return navigator.geolocation.getCurrentPosition(function (position, err) {
+      return navigator.geolocation[position](function (position, err) {
         let lat = position.coords.latitude;
         let long = position.coords.longitude;
         res({
@@ -33,9 +34,8 @@ export const getData = async function (lat, long) {
     );
 
     const json = await data.json();
-    //const { state_code, timezone, country_code, city_name } = json;
-
     //$('body').text(json.data);
+    console.log(json);
     return json;
   } catch (err) {
     errorMessage('getData', err);
