@@ -12,7 +12,7 @@ const init = async () => {
   //returns json from the weather api using lat and long as its target
   const data = await weatherCall.getData(lat, long);
   //
-  const thisWeek = parseInfo.parseDataThisWeek(data, 30, 5);
+  const thisWeek = parseInfo.parseDataThisWeek(data, 'week');
 
   const thisMonth = parseInfo.getMonth(thisWeek);
 
@@ -20,9 +20,8 @@ const init = async () => {
   const dateHour = parseInfo.parseDataTimeAndDay(thisWeek);
   const temp = parseInfo.parseTemp(thisWeek);
   const descIcon = parseInfo.getDescIcon(thisWeek);
+  const miscStats = parseInfo.getMiscStats(thisWeek);
   const dayOfWeek = parseInfo.getToday(dateHour);
-
-  console.log(dateHour, thisMonth);
 
   return {
     dateHour,
@@ -30,26 +29,26 @@ const init = async () => {
     thisMonth,
     dayOfWeek,
     descIcon,
+    miscStats,
   };
 };
 
 //scartch
 const cardController = (data) => {
-  const { dateHour, temp, thisMonth, dayOfWeek, descIcon } = data;
+  const { dateHour, temp, thisMonth, dayOfWeek, descIcon, miscStats } = data;
   const cards = [];
   //console.log(dateHour[1].date);
   for (let i = 0; dateHour.length > i; i++) {
     const { icon, description } = descIcon[i];
     const { date, hour } = dateHour[i];
-
     let today;
-
+    const misc = miscStats[i];
     const tempurature = temp[i];
     const month = thisMonth[i];
     dateHour[i].hour == '00' && i > 1
       ? (today = dayOfWeek[1])
       : (today = dayOfWeek[0]);
-
+    console.log(miscStats);
     data = new MainCard(
       hour,
       today,
@@ -57,8 +56,13 @@ const cardController = (data) => {
       date,
       tempurature,
       description,
-      icon
+      icon,
+      ...misc,
+      'vis'
     );
+
+    data.getLow();
+    if (i > 4) data.notVis();
     const newCard = data.getTemplate();
     cards.push(newCard);
   }

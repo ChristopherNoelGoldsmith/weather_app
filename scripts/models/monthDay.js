@@ -3,10 +3,9 @@ export const createCalWeek = function (day) {
 
   const year = date.getFullYear();
   const month = date.getMonth();
-  console.log(day);
-  date = new Date(`${month} ${day}, ${year} 07:00:00`);
+  //Passees values to get the 0-6 numberical value of the day of the week this specified date is on.
+  date = new Date(`${month + 1} ${day}, ${year} 07:00:00`);
   date = date.getDay();
-  console.log(date);
 
   return date;
 };
@@ -16,28 +15,28 @@ export const dayOfWeek = (el) => {
 
   switch (el) {
     case 0:
-      return 'Sunday';
+      return 'Sun';
       break;
     case 1:
-      return 'Monday';
+      return 'Mon';
       break;
     case 2:
-      return 'Tuesday';
+      return 'Tue';
       break;
     case 3:
-      return 'Wednesday';
+      return 'Wed';
       break;
     case 4:
-      return 'Thursday';
+      return 'Thu';
       break;
     case 5:
-      return 'Friday';
+      return 'Fri';
       break;
     case 6:
-      return 'Saturday';
+      return 'Sat';
       break;
     default:
-      return 'Sunday?';
+      return 'Sun?';
       break;
   }
 };

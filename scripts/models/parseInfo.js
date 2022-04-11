@@ -2,16 +2,30 @@ import { errorMessage } from './error_msg.js';
 import * as monthDay from './monthDay.js';
 //import { getData, getLatLon } from './Weather_Call';
 
-export const parseDataThisWeek = function (apiData, fromWhen = 0, logs = 8) {
+export const parseDataThisWeek = function (apiData, timeframe) {
   try {
+    console.log(apiData);
     apiData = apiData.data;
     //obtains current day and hour to parse the data within the JSON paseed through this function
-    const next24Hours = apiData.splice(fromWhen, logs);
+    if ((timeframe = 'week')) {
+      const thisWeek = apiData.filter((el) => {
+        el = el.datetime.match(/:00/);
+        return el;
+      });
 
-    return next24Hours;
+      return thisWeek;
+    }
   } catch (err) {
     errorMessage('parseDataThisWeek', err);
   }
+};
+
+export const getMiscStats = (data) => {
+  data = data.map((el) => {
+    const { wind_spd, pres, rh, dewpt, vis, uv, precip } = el;
+    return [wind_spd, pres, rh, dewpt, vis, uv, precip];
+  });
+  return data;
 };
 
 //pass the result of parseDataThisWeek through the functions below
@@ -35,17 +49,15 @@ export const parseDataTimeAndDay = function (data) {
 
 export const parseTemp = function (data) {
   //parses the data of an array of the Weatherbit API's object
-  try {
-    data = data.map((el) => {
-      el = el.temp;
-      el = celToFh(el);
-      el = Math.round(el);
-      return el;
-    });
-    return data;
-  } catch (err) {
-    errorMessage('parseDataTimeAndDay', err);
-  }
+  data = data.map((el) => {
+    el = el.temp;
+    console.log(el);
+    el = celToFh(el);
+    el = Math.round(el);
+    console.log(el);
+    return el;
+  });
+  return data;
 };
 //
 
