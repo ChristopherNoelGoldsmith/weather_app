@@ -76,4 +76,4 @@ const activate = async () => {
 
 //parseInfo.getToday(9);
 
-activate();
+//activate();
