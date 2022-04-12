@@ -10,6 +10,34 @@ $font-size-large: 2rem;
     font-family: $font-stack;
 }
 
+@keyframes scrolling {
+    
+    0% { transform: translateX(0px); }
+    50%  { transform: translateX(-300px); }
+    100%   { transform: translateX(0px); }
+}
+
+.background{
+    z-index: -1000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.background-image{
+    background-position-y: center;
+    box-sizing: content-box;
+    background-size: cover;
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background-image: url('./img/normal.jpg');
+    animation-name: scrolling;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
 .weather-icon{
     animation-name: weather-icon;
     animation-duration: 5s;
@@ -42,10 +70,7 @@ $font-size-large: 2rem;
 }
 
 body{
-    margin: auto;
-    background-image: url('./img/normal.jpg');
-    background-position-x: center;
-    background-position-y: center;
+    margin: auto;   
 }
 
 .search-btn{

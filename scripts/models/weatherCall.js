@@ -4,6 +4,13 @@ export const reverseGeocode = async (city, state = '', country = '') => {
   const limit = 3;
   const key = 'fc5bef22a20647438f60b2a29a04d8b5';
   console.log(city, state, country);
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Security-Policy': 'upgrade-insecure-request;',
+    },
+  };
   const data = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=${limit}&appid=${key}`
   );
