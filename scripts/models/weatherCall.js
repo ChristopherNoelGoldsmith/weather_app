@@ -1,22 +1,17 @@
 import { errorMessage } from './error_msg.js';
 
-export function reverseGeocode() {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com',
-      'X-RapidAPI-Key': 'ea37a54435msh562d33296e554cbp1cc1c2jsn71e346517fec',
-    },
-  };
+export const reverseGeocode = async (city, state, country) => {
+  const limit = 3;
+  const key = 'fc5bef22a20647438f60b2a29a04d8b5';
 
-  fetch(
-    'https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=164%20Townsend%20St.%2C%20San%20Francisco%2C%20CA&language=en',
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
-}
+  const data = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=${limit}&appid=${key}`
+  );
+
+  const json = await data.json();
+  console.log(json);
+  return json;
+};
 
 export function getLatLon(position = 'getCurrentPosition') {
   const options = {
@@ -45,6 +40,14 @@ export function getLatLon(position = 'getCurrentPosition') {
 
 export const getData = async function (lat, long) {
   try {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
+        'X-RapidAPI-Key': 'ea37a54435msh562d33296e554cbp1cc1c2jsn71e346517fec',
+      },
+    };
+
     const data = await fetch(
       `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${lat}&lon=${long}`,
       options

@@ -2,21 +2,17 @@ import { errorMessage } from './error_msg.js';
 import * as monthDay from './monthDay.js';
 //import { getData, getLatLon } from './Weather_Call';
 
-export const parseDataThisWeek = function (apiData, timeframe) {
-  try {
-    console.log(apiData);
-    apiData = apiData.data;
-    //obtains current day and hour to parse the data within the JSON paseed through this function
-    if ((timeframe = 'week')) {
-      const thisWeek = apiData.filter((el) => {
-        el = el.datetime.match(/:00/);
-        return el;
-      });
+export const parseDataThisWeek = function (apiData, timeframe = 'week') {
+  console.log(apiData);
+  apiData = apiData.data;
+  //obtains current day and hour to parse the data within the JSON paseed through this function
+  if ((timeframe = 'week')) {
+    const thisWeek = apiData.filter((el) => {
+      el = el.datetime.match(/:00/);
+      return el;
+    });
 
-      return thisWeek;
-    }
-  } catch (err) {
-    errorMessage('parseDataThisWeek', err);
+    return thisWeek;
   }
 };
 

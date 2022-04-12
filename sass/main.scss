@@ -51,12 +51,14 @@ body{
 .search-btn{
     background-color: white;
     width: 5vw;
+    min-width: 20px;
     height: 5vh;
     vertical-align: middle;
 }
 #search-bar{
     vertical-align: middle;
     margin:auto;
+    height: 5vh;
 }
 .search-btn:hover{
     cursor: pointer;
