@@ -1,17 +1,21 @@
 import * as weatherCall from './models/weatherCall.js';
 import * as parseInfo from './models/parseInfo.js';
-import { createCard } from './models/createCard.js';
+import * as createCard from './models/createCard.js';
 import { MainCard } from './views/main_card.js';
+import { getValue } from './views/search_bar.js';
 
 //controller
-const init = async () => {
-  const latLong = await weatherCall.getLatLon();
-
+const init = async (latLong) => {
+  if (!latLong) latLong = await weatherCall.getLatLon();
+  console.log(latLong);
   const { lat, long } = latLong;
 
   //returns json from the weather api using lat and long as its target
   const data = await weatherCall.getData(lat, long);
-  //
+
+  //Interacts with title card and changes the text to the current location
+  const thisPlace = parseInfo.getThisPlace(data);
+
   const thisWeek = parseInfo.parseDataThisWeek(data, 'week');
 
   const thisMonth = parseInfo.getMonth(thisWeek);
@@ -24,6 +28,7 @@ const init = async () => {
   const dayOfWeek = parseInfo.getToday(dateHour);
 
   return {
+    thisPlace,
     dateHour,
     temp,
     thisMonth,
@@ -35,7 +40,15 @@ const init = async () => {
 
 //scartch
 const cardController = (data) => {
-  const { dateHour, temp, thisMonth, dayOfWeek, descIcon, miscStats } = data;
+  const {
+    thisPlace,
+    dateHour,
+    temp,
+    thisMonth,
+    dayOfWeek,
+    descIcon,
+    miscStats,
+  } = data;
   const cards = [];
   //console.log(dateHour[1].date);
   for (let i = 0; dateHour.length > i; i++) {
@@ -48,7 +61,6 @@ const cardController = (data) => {
     dateHour[i].hour == '00' && i > 1
       ? (today = dayOfWeek[1])
       : (today = dayOfWeek[0]);
-    console.log(miscStats);
     data = new MainCard(
       hour,
       today,
@@ -60,20 +72,34 @@ const cardController = (data) => {
       ...misc,
       'vis'
     );
-
     data.getLow();
     if (i > 4) data.notVis();
     const newCard = data.getTemplate();
     cards.push(newCard);
   }
-  createCard(cards, 'main');
+  createCard.changeTitle(thisPlace);
+  createCard.createCard(cards, 'main');
 };
 
-const activate = async () => {
-  const data = await init();
+const activate = async (latLong) => {
+  const data = await init(latLong);
   cardController(data);
 };
 
 //parseInfo.getToday(9);
 
 //activate();
+
+$(document).on('click', async (target) => {
+  console.log(target);
+  if ((target.id = 'search-btn')) {
+    let val = getValue();
+    val = val.split(',');
+    console.log(val);
+    const data = await weatherCall.reverseGeocode.apply(null, val);
+    const { lat, lon } = data[0];
+    return activate({ lat, long: lon });
+  }
+});
+
+activate();

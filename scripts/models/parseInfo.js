@@ -7,6 +7,7 @@ export const parseDataThisWeek = function (apiData, timeframe = 'week') {
   apiData = apiData.data;
   //obtains current day and hour to parse the data within the JSON paseed through this function
   if ((timeframe = 'week')) {
+    console.log('good');
     const thisWeek = apiData.filter((el) => {
       el = el.datetime.match(/:00/);
       return el;
@@ -16,9 +17,22 @@ export const parseDataThisWeek = function (apiData, timeframe = 'week') {
   }
 };
 
+export const getThisPlace = (data) => {
+  const { state_code, city_name, country_code } = data;
+
+  return {
+    city_name,
+    state_code,
+    country_code,
+  };
+};
+
 export const getMiscStats = (data) => {
+  console.log('getMiscStats');
   data = data.map((el) => {
-    const { wind_spd, pres, rh, dewpt, vis, uv, precip } = el;
+    let { wind_spd, pres, rh, dewpt, vis, uv, precip } = el;
+    precip = precip * 100;
+    precip = Math.round(precip);
     return [wind_spd, pres, rh, dewpt, vis, uv, precip];
   });
   return data;
@@ -47,10 +61,8 @@ export const parseTemp = function (data) {
   //parses the data of an array of the Weatherbit API's object
   data = data.map((el) => {
     el = el.temp;
-    console.log(el);
     el = celToFh(el);
     el = Math.round(el);
-    console.log(el);
     return el;
   });
   return data;

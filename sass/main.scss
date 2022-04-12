@@ -69,6 +69,12 @@ body{
     font-size: $font-size-large;
 }
 
+#location-name{
+    color: white;
+    font-size: $font-size-large;
+    vertical-align: middle;
+    margin-right: auto;
+}
 
 @media only screen and (min-width: 915px){
     html {
@@ -123,9 +129,6 @@ body{
                     font-size: $font-size-large;
                     color: white;
                     text-shadow: 2px 2px black;
-                }
-                .desc{
-                    font-size: $font-size-mid;
                 }
             }
         }

@@ -1,3 +1,4 @@
-const getValue = () => {
-  return $('.search').val();
+export const getValue = () => {
+  const data = $('.search').val();
+  return data;
 };
