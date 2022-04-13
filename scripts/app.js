@@ -4,15 +4,16 @@ import * as createCard from './models/createCard.js';
 import { createMainCards } from './views/main_card.js';
 import { getValue } from './views/search_bar.js';
 import { changeArrows } from './views/side_arrows.js';
+import { metric } from './views/C_F_btn.js';
 
 //connects to the api, retrives the data then parses it.
-const locationController = async (latLong) => {
+const locationController = async (latLong, metric) => {
   //targets a location with lat and long to obtain weather data from the api
   if (!latLong) latLong = await weatherCall.getLatLon();
   const { lat, long } = latLong;
 
   //returns json from the weather api using lat and long as its target
-  const data = await weatherCall.getData(lat, long);
+  const data = await weatherCall.getData(lat, long, metric);
   //Interacts with title card and changes the text to the current location
   //obtains the location name
   const thisPlace = parseInfo.getThisPlace(data);
@@ -43,26 +44,35 @@ const cardController = (data) => {
 };
 
 //initiates the api and cards
-const activate = async (latLong) => {
-  const data = await locationController(latLong);
+const activate = async (latLong, metric = 'I') => {
+  console.log(latLong);
+  const data = await locationController(latLong, metric);
   cardController(data);
 };
 
 //Uses on click to identify the ID of an element and activate the search bar.
 $(document).on('click', async (el) => {
   const target = el.target.id;
-  console.log(el.target.id);
+  let val = getValue();
+  val = val.split(',');
   if (target === 'search-btn') {
-    let val = getValue();
-    val = val.split(',');
     const data = await weatherCall.reverseGeocode(...val);
     const { lat, lon } = data[0];
-    return activate({ lat, long: lon });
+    return activate({ lat, long: lon }, metric());
   }
   if (target === 'left' || target === 'right') {
     const page = changeArrows(target);
-    createCard.createCard(page, 'main', false);
-    console.log('success');
+    return createCard.createCard(page, 'main', false);
+  }
+  if (target === 'C-F') {
+    const changeMeasurement = metric(true);
+    if (!val || val[0] == '') {
+      console.log(val);
+      return activate(false, changeMeasurement);
+    }
+    const data = await weatherCall.reverseGeocode(...val);
+    const { lat, lon } = data[0];
+    return activate({ lat, long: lon }, changeMeasurement);
   }
 });
 

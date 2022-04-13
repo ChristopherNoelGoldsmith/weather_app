@@ -50,7 +50,7 @@ export function getLatLon() {
 //either the js geolocation api or the reverseGeocode (openweathermapapi) function
 //has option to add unit to change to metric. Default is imperial.
 //
-export const getData = async function (lat, long, unit = 'I') {
+export const getData = async function (lat, long, unit) {
   try {
     const key = 'a609c15503594caf96b28d360952f491';
     const data = await fetch(

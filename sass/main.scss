@@ -44,11 +44,8 @@ $font-size-large: 2rem;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
-@keyframes weather-icon {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 10px); }
-    100%   { transform: translate(0, -0px); }   
-}
+
+
 .time{
     font-size: 2rem;
 }
@@ -102,6 +99,34 @@ body{
     margin-right: auto;
 }
 
+#C-F-btn{
+    vertical-align: middle;
+    height: 4.5vh;
+    width: 4.5vw;
+    border-radius: 20%;
+    border: none;
+    margin: auto;
+    z-index: 1000;
+    p{
+        position: justify;
+        font-size: 3.5vh;
+        text-align: center;
+        font-weight: bolder;
+        vertical-align: middle;
+        color: white;
+        margin: auto;
+    }
+}
+.C{
+    background-color:cyan;
+}
+.F{
+    background-color: crimson;
+}
+#C-F-btn:hover{
+    opacity: 0.8;
+}
+
 @media only screen and (min-width: 915px){
     html {
         font-size: 12px;
@@ -145,8 +170,8 @@ body{
     .widget{
         background-color: rgba($color: black, $alpha: 0.8);
         border-radius: 20%;
-        margin: 1%;
-        min-width: 18vw;
+        margin: 1vh 2vw;
+        min-width: 16vw;
         margin-top: 12vh;
         padding-bottom: 2%;
         box-shadow: 3px 2px 2px black;
