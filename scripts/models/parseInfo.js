@@ -1,20 +1,63 @@
 import { errorMessage } from './error_msg.js';
 import * as monthDay from './monthDay.js';
-//import { getData, getLatLon } from './Weather_Call';
 
-export const parseDataThisWeek = function (apiData, timeframe = 'week') {
-  console.log(apiData);
-  apiData = apiData.data;
-  //obtains current day and hour to parse the data within the JSON paseed through this function
-  if ((timeframe = 'week')) {
-    console.log('good');
-    const thisWeek = apiData.filter((el) => {
-      el = el.datetime.match(/:00/);
-      return el;
-    });
+//parses the data attribute of the API and parses all values used in cards then places them in an array of arrays
+//for each day.
+export const parseData = (data) => {
+  data = data.data.map((el) => {
+    let {
+      datetime,
+      high_temp,
+      low_temp,
+      precip,
+      pres,
+      rh,
+      weather,
+      wind_spd,
+      wind_cdir,
+      dewpt,
+      vis,
+      uv,
+    } = el;
+    let { icon, description } = weather;
 
-    return thisWeek;
-  }
+    //rounds some values returned from api to avoid decimals;
+    precip = Math.round(precip * 100);
+    low_temp = Math.round(low_temp);
+    high_temp = Math.round(high_temp);
+    dewpt = Math.round(dewpt);
+    wind_spd = Math.round(wind_spd);
+
+    //converts the datetime to a day of the week, date, month ex: Monday, the first, April
+    let month = /-\d\d-/.exec(datetime);
+    month = /\d\d/.exec(month)[0];
+    month = monthDay.getMonthString(month);
+
+    let day = /\d\d$/.exec(datetime)[0];
+    datetime = monthDay.createCalWeek(day);
+    datetime = monthDay.dayOfWeek(datetime);
+
+    //
+    return {
+      datetime, //1
+      day, //2
+      month, //3
+      high_temp, //4
+      low_temp, //5
+      precip, //6
+      pres, //7
+      rh, //8
+      wind_spd, //9
+      wind_cdir, //10
+      dewpt, //11
+      vis, //12
+      uv, //13
+      icon, //14
+      description, //15
+    };
+  });
+
+  return data;
 };
 
 export const getThisPlace = (data) => {
@@ -27,51 +70,9 @@ export const getThisPlace = (data) => {
   };
 };
 
-export const getMiscStats = (data) => {
-  console.log('getMiscStats');
-  data = data.map((el) => {
-    let { wind_spd, pres, rh, dewpt, vis, uv, precip } = el;
-    precip = precip * 100;
-    precip = Math.round(precip);
-    return [wind_spd, pres, rh, dewpt, vis, uv, precip];
-  });
-  return data;
-};
-
-//pass the result of parseDataThisWeek through the functions below
-export const parseDataTimeAndDay = function (data) {
-  //parses the data of an array of the Weatherbit API's object
-  try {
-    data = data.map((el) => {
-      el = el.datetime.match(/..:../)[0].split(':');
-      const [date, hour] = el;
-      el = {
-        date,
-        hour,
-      };
-      return el;
-    });
-    return data;
-  } catch (err) {
-    errorMessage('parseDataTimeAndDay', err);
-  }
-};
-
-export const parseTemp = function (data) {
-  //parses the data of an array of the Weatherbit API's object
-  data = data.map((el) => {
-    el = el.temp;
-    el = celToFh(el);
-    el = Math.round(el);
-    return el;
-  });
-  return data;
-};
-//
-
 export const getMonth = function (data, string = false) {
   try {
-    data = data.map((el) => {
+    data = data.data.map((el) => {
       el = el.datetime.match(/-\d\d-/)[0];
       el = el.match(/\d\d/)[0];
 
@@ -84,32 +85,3 @@ export const getMonth = function (data, string = false) {
     errorMessage('getMonth', err);
   }
 };
-
-//converts the js date object to an array with the desired dumber of named days of the week in order
-//ex if today is tuesday and you need today and the next three days pass 3 as param and it will return
-//[Tuesday, Wednesday, Thursday]
-//it has a default of 8 to return today and tomorrow;
-export const getToday = function (num) {
-  const days = num.map((el) => {
-    el = el.date;
-    el = monthDay.createCalWeek(el);
-    return (el = monthDay.dayOfWeek(el));
-  });
-  return days;
-};
-
-export const getDescIcon = function (data) {
-  data = data.map((el) => {
-    return el.weather;
-  });
-  return data;
-};
-
-//Utility Functions
-//C to F
-const celToFh = (temp) => {
-  temp = (temp * 9) / 5 + 32;
-  return temp;
-};
-
-//

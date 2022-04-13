@@ -33,7 +33,11 @@
       <div class="navbar">
         <h2 id="location-name"></h2>
         <section id="search-bar">
-          <input type="search" class="search" /><button class="search-btn">
+          <input
+            type="search"
+            placeholder="City*, State, Country"
+            class="search"
+          /><button class="search-btn">
             <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
           </button>
         </section>
@@ -43,51 +47,50 @@
     <main>
       <footer></footer>
     </main>
-
+    <!--TEMPLATE FOR CARDS BELOW-->
     <template id="main-card-template">
-      <div class="widget ${this.vis} main-wid widget-1">
+      <div class="widget main-wid widget-1">
         <div class="inner-widget">
           <div class="day">
-            <span class="weekday">${this.today}</span>
-            <span class="date">${this.month}, ${this.day}</span>
+            <span class="weekday">%TODAY%</span>
+            <span class="date">%MONTH%, %DAY%</span>
           </div>
           <div class="img">
             <img
               class="weather-icon"
-              src="https://www.weatherbit.io/static/img/icons/${this.icon}.png"
+              src="https://www.weatherbit.io/static/img/icons/%ICON%.png"
               alt=""
             />
           </div>
 
           <div class="misc">
             <div class="temp">
-              <i class="fa-solid fa-temperature-half"></i>${this.temp} -
-              ${this.low} F
+              <i class="fa-solid fa-temperature-half"></i>%HIGH% - %LOW% F
             </div>
             <span>
               <i class="fa-solid fa-cloud-sun-rain"></i>
-              <progress min="0" max="100" value="${this.precip}"></progress>
-              ${this.precip}%</span
+              <progress min="0" max="100" value="%PRECIP%"></progress>
+              %PRECIP% %</span
             >
 
-            <div class="desc">${this.desc}</div>
+            <div class="desc">%DESC%</div>
             <div class="wind">
-              <i class="fa-solid fa-wind"></i>Wind ${this.wind}mph
+              <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD% MPH
             </div>
             <div class="humidity">
-              <i class="fa-solid fa-water"></i>Humidity ${this.humidity}
+              <i class="fa-solid fa-water"></i>Humidity: %HUMIDITY%%
             </div>
             <div class="pressure">
-              <i class="fa-solid fa-circle"></i>Pressure ${this.pressure}
+              <i class="fa-solid fa-circle"></i>Pressure: %PRESSURE%
             </div>
             <div class="dewpoint">
-              <i class="fa-solid fa-droplet"></i>Dewpoint ${this.dewpoint}F
+              <i class="fa-solid fa-droplet"></i>Dewpoint: %DEWPOINT%F
             </div>
             <div class="visability">
-              <i class="fa-solid fa-eye"></i>Visability ${this.visability}
+              <i class="fa-solid fa-eye"></i>Visability: %VISABILITY% Mi
             </div>
             <div class="uv-index">
-              <i class="fa-solid fa-sun"></i>UV Index ${this.uv}
+              <i class="fa-solid fa-sun"></i>UV Index: %UV%
             </div>
           </div>
         </div>

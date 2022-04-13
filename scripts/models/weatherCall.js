@@ -1,5 +1,9 @@
 import { errorMessage } from './error_msg.js';
 
+//uses the openweathermap api to reverse geocode a location entered into the searchbar in the DOM
+//needs the api key hidden as it is currently exposed.
+//only city is NEEDED to get a response but the state and country peramiters will give
+//the reverseGeocode function more accuracy
 export const reverseGeocode = async (city, state = '', country = '') => {
   const limit = 3;
   const key = 'fc5bef22a20647438f60b2a29a04d8b5';
@@ -20,18 +24,15 @@ export const reverseGeocode = async (city, state = '', country = '') => {
   return json;
 };
 
-export function getLatLon(position = 'getCurrentPosition') {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
-      'X-RapidAPI-Key': 'ea37a54435msh562d33296e554cbp1cc1c2jsn71e346517fec',
-    },
-  };
+//gets lat and long
+export function getLatLon() {
   // mutate position depending on requirements to give proper city
   try {
     return new Promise((res, rej) => {
-      return navigator.geolocation[position](function (position, err) {
+      return navigator.geolocation['getCurrentPosition'](function (
+        position,
+        err
+      ) {
         let lat = position.coords.latitude;
         let long = position.coords.longitude;
         res({
@@ -45,24 +46,18 @@ export function getLatLon(position = 'getCurrentPosition') {
   }
 }
 
-export const getData = async function (lat, long) {
+//obtains data from the weatherbit apit utilizing lat and long obtained from
+//either the js geolocation api or the reverseGeocode (openweathermapapi) function
+//has option to add unit to change to metric. Default is imperial.
+//
+export const getData = async function (lat, long, unit = 'I') {
   try {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
-        'X-RapidAPI-Key': 'ea37a54435msh562d33296e554cbp1cc1c2jsn71e346517fec',
-      },
-    };
-
+    const key = 'a609c15503594caf96b28d360952f491';
     const data = await fetch(
-      `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${lat}&lon=${long}`,
-      options
+      `https://api.weatherbit.io/v2.0/forecast/daily?key=${key}&lat=${lat}&lon=${long}&units=${unit}`
     );
 
     const json = await data.json();
-    //$('body').text(json.data);
-    console.log(json);
     return json;
   } catch (err) {
     errorMessage('getData', err);

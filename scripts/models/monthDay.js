@@ -6,7 +6,6 @@ export const createCalWeek = function (day) {
   //Passees values to get the 0-6 numberical value of the day of the week this specified date is on.
   date = new Date(`${month + 1} ${day}, ${year} 07:00:00`);
   date = date.getDay();
-
   return date;
 };
 
