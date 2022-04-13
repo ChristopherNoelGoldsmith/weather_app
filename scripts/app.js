@@ -3,6 +3,7 @@ import * as parseInfo from './models/parseInfo.js';
 import * as createCard from './models/createCard.js';
 import { createMainCards } from './views/main_card.js';
 import { getValue } from './views/search_bar.js';
+import { changeArrows } from './views/side_arrows.js';
 
 //connects to the api, retrives the data then parses it.
 const locationController = async (latLong) => {
@@ -33,6 +34,10 @@ const cardController = (data) => {
   const cards = weatherData.map((el) => {
     return createMainCards(el);
   });
+  //TO DO!
+  //take cards wanted as visable and append them to the main container
+  //take cards not-wanted and make them invisable.
+  //have scrolling effect before the visability change.
   createCard.changeTitle(thisPlace);
   createCard.createCard(cards, 'main');
 };
@@ -44,13 +49,20 @@ const activate = async (latLong) => {
 };
 
 //Uses on click to identify the ID of an element and activate the search bar.
-$(document).on('click', async (target) => {
-  if ((target.id = 'search-btn')) {
+$(document).on('click', async (el) => {
+  const target = el.target.id;
+  console.log(el.target.id);
+  if (target === 'search-btn') {
     let val = getValue();
     val = val.split(',');
     const data = await weatherCall.reverseGeocode(...val);
     const { lat, lon } = data[0];
     return activate({ lat, long: lon });
+  }
+  if (target === 'left' || target === 'right') {
+    const page = changeArrows(target);
+    createCard.createCard(page, 'main', false);
+    console.log('success');
   }
 });
 

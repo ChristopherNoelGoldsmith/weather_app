@@ -106,6 +106,36 @@ body{
     html {
         font-size: 12px;
     }
+    #left-right-btn{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        z-index: 100;
+        #left{
+            position: absolute;
+            left: 0;
+            top: 40%;
+            height: 20vh;
+            background-color:transparent;
+            border: none;
+            border-radius: 5%;
+        }
+        #left:hover{
+            background-color:rgba($color: aquamarine , $alpha: 0.5)
+        }
+        #right{
+            position: absolute;
+            right: 0;
+            top: 40%;
+            height: 20vh;
+            background-color:transparent;
+            border: none;
+            border-radius: 5%;
+        }
+        #right:hover{
+            background-color:rgba($color: aquamarine , $alpha: 0.5)
+        }
+    }
     main{
         width: 100vw;
         overflow: hidden;
@@ -175,6 +205,10 @@ body{
 @media only screen and (max-width: 916px){
     html {
         font-size: 16px;
+    }
+
+    #left-right-btn{
+        display: none;
     }
 
     main{

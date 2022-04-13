@@ -1,5 +1,5 @@
 //creates cards that append to the dom
-export const createCard = (cards, type) => {
+export const createCard = (cards, type, clear = true) => {
   $('main').children().remove();
   cards.forEach((el) => {
     $(type).append(el);
