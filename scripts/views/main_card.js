@@ -1,4 +1,4 @@
-export const createMainCards = (data) => {
+export const createMainCards = (data, mes) => {
   const {
     datetime,
     day,
@@ -18,7 +18,30 @@ export const createMainCards = (data) => {
   } = data;
 
   let template = $('#main-card-template').html();
+  //MEASUREMENT REPLACEMENT
+  const imperial = {
+    temp: 'F',
+    wind: 'Mph',
+    dewpt: 'F',
+    vis: 'Mi',
+  };
 
+  const metric = {
+    temp: 'C',
+    wind: 'Ms',
+    dewpt: 'C',
+    vis: 'Km',
+  };
+
+  const replacer = (mi) => {
+    template = template.replace(/%TEMPMES%/g, mi.temp);
+    template = template.replace(/%WINDMES%/g, mi.wind);
+    template = template.replace(/%DEWPOINTMES%/g, mi.dewpt);
+    template = template.replace(/%VISMES%/g, mi.vis);
+  };
+  if (mes === 'C' || mes === 'M' || mes == false) replacer(metric);
+  if (mes === 'F' || mes === 'I') replacer(imperial);
+  //
   template = template.replace(/%TODAY%/g, datetime);
   template = template.replace(/%DAY%/g, day);
   template = template.replace(/%MONTH%/g, month);

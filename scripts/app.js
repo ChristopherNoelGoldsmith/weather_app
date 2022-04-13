@@ -1,6 +1,6 @@
-import * as weatherCall from './models/weatherCall.js';
-import * as parseInfo from './models/parseInfo.js';
-import * as createCard from './models/createCard.js';
+import * as weatherCall from './models/get_data.js';
+import * as parseInfo from './models/parse_Info.js';
+import * as createCard from './views/create_card.js';
 import { createMainCards } from './views/main_card.js';
 import { getValue } from './views/search_bar.js';
 import { changeArrows } from './views/side_arrows.js';
@@ -28,12 +28,12 @@ const locationController = async (latLong, metric) => {
 };
 
 //plugs data into cards then creates and appends them to the DOM
-const cardController = (data) => {
+const cardController = (data, metric) => {
   const { thisPlace, weatherData } = data;
   //is what creates cards
   //can use array.split() to reduce the number of cards returned
   const cards = weatherData.map((el) => {
-    return createMainCards(el);
+    return (el = createMainCards(el, metric));
   });
   //TO DO!
   //take cards wanted as visable and append them to the main container
@@ -47,7 +47,7 @@ const cardController = (data) => {
 const activate = async (latLong, metric = 'I') => {
   console.log(latLong);
   const data = await locationController(latLong, metric);
-  cardController(data);
+  cardController(data, metric);
 };
 
 //Uses on click to identify the ID of an element and activate the search bar.
@@ -67,7 +67,6 @@ $(document).on('click', async (el) => {
   if (target === 'C-F') {
     const changeMeasurement = metric(true);
     if (!val || val[0] == '') {
-      console.log(val);
       return activate(false, changeMeasurement);
     }
     const data = await weatherCall.reverseGeocode(...val);

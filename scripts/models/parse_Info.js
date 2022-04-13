@@ -1,5 +1,5 @@
 import { errorMessage } from './error_msg.js';
-import * as monthDay from './monthDay.js';
+import * as monthDay from './month_day.js';
 
 //parses the data attribute of the API and parses all values used in cards then places them in an array of arrays
 //for each day.
