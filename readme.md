@@ -1,5 +1,7 @@
 # I Wonder Whether We'll Have Good Weather? - ft: Weatherbit & OpenWeatherMap
 
+![alt text](./img/markdown.jpg)
+
 ### Features
 
 - Weather report for today.
@@ -18,7 +20,7 @@
 
 ## TO DO LIST
 
-- [] Fix day of the week display.
+- [x] Fix day of the week display.
 - [] Deep clean and organize code.
 - [] Improve Searchbar styles on mobile.
 - [] Polish UI and make tablet screen more compatable
