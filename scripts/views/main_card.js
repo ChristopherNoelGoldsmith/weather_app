@@ -5,7 +5,7 @@ export const createMainCards = (data, mes) => {
     month,
     high_temp,
     low_temp,
-    precip,
+    pop,
     pres,
     rh,
     wind_spd,
@@ -47,7 +47,7 @@ export const createMainCards = (data, mes) => {
   template = template.replace(/%MONTH%/g, month);
   template = template.replace(/%HIGH%/g, high_temp);
   template = template.replace(/%LOW%/g, low_temp);
-  template = template.replace(/%PRECIP%/g, precip);
+  template = template.replace(/%PRECIP%/g, pop);
   template = template.replace(/%PRESSURE%/g, pres);
   template = template.replace(/%HUMIDITY%/g, rh);
   template = template.replace(/%WIND_SPD%/g, wind_spd);

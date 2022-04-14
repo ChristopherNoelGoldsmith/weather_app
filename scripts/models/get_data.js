@@ -1,4 +1,5 @@
 import { errorMessage } from './error_msg.js';
+import * as apiKeys from '../../sass/api_keys.js';
 
 //uses the openweathermap api to reverse geocode a location entered into the searchbar in the DOM
 //needs the api key hidden as it is currently exposed.
@@ -6,7 +7,7 @@ import { errorMessage } from './error_msg.js';
 //the reverseGeocode function more accuracy
 export const reverseGeocode = async (city, state = '', country = '') => {
   const limit = 3;
-  const key = 'fc5bef22a20647438f60b2a29a04d8b5';
+  const key = apiKeys.REVGEO_API_KEY;
   console.log(city, state, country);
 
   const options = {
@@ -52,12 +53,13 @@ export function getLatLon() {
 //
 export const getData = async function (lat, long, unit) {
   try {
-    const key = 'a609c15503594caf96b28d360952f491';
+    const key = apiKeys.WEATHER_API_KEY;
     const data = await fetch(
       `https://api.weatherbit.io/v2.0/forecast/daily?key=${key}&lat=${lat}&lon=${long}&units=${unit}`
     );
 
     const json = await data.json();
+    console.log(json);
     return json;
   } catch (err) {
     errorMessage('getData', err);

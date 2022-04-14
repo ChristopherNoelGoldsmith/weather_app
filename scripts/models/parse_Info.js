@@ -9,7 +9,7 @@ export const parseData = (data) => {
       datetime,
       high_temp,
       low_temp,
-      precip,
+      pop,
       pres,
       rh,
       weather,
@@ -22,7 +22,6 @@ export const parseData = (data) => {
     let { icon, description } = weather;
 
     //rounds some values returned from api to avoid decimals;
-    precip = Math.round(precip * 100);
     low_temp = Math.round(low_temp);
     high_temp = Math.round(high_temp);
     dewpt = Math.round(dewpt);
@@ -44,7 +43,7 @@ export const parseData = (data) => {
       month, //3
       high_temp, //4
       low_temp, //5
-      precip, //6
+      pop, //6
       pres, //7
       rh, //8
       wind_spd, //9

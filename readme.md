@@ -26,5 +26,5 @@
 - [] Polish UI and make tablet screen more compatable
 - [] Improve searchbar to include industry standard functionallity.
 - [] Include a daily weather option for next 24 hours.
-- [] Have arrow sliders to parse through cards.
-- [] Add imperial to metric measure toggle.
+- [x] Have arrow sliders to parse through cards.
+- [x] Add imperial to metric measure toggle.

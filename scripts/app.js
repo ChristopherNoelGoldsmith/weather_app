@@ -5,6 +5,7 @@ import { createMainCards } from './views/main_card.js';
 import { getValue } from './views/search_bar.js';
 import { changeArrows } from './views/side_arrows.js';
 import { metric } from './views/C_F_btn.js';
+import * as DOM from './views/dom.js';
 
 //connects to the api, retrives the data then parses it.
 const locationController = async (latLong, metric) => {
@@ -45,34 +46,34 @@ const cardController = (data, metric) => {
 
 //initiates the api and cards
 const activate = async (latLong, metric = 'I') => {
-  console.log(latLong);
   const data = await locationController(latLong, metric);
   cardController(data, metric);
 };
 
-//Uses on click to identify the ID of an element and activate the search bar.
-$(document).on('click', async (el) => {
-  const target = el.target.id;
-  let val = getValue();
-  val = val.split(',');
-  if (target === 'search-btn') {
-    const data = await weatherCall.reverseGeocode(...val);
-    const { lat, lon } = data[0];
-    return activate({ lat, long: lon }, metric());
-  }
-  if (target === 'left' || target === 'right') {
-    const page = changeArrows(target);
+const addEventListeners = () => {
+  //search button
+  $(DOM.dom.searchBtn).on('click', async () => {
+    const val = await DOM.searchclick();
+    console.log(val);
+    return activate(...val);
+  });
+  //page left
+  $(DOM.dom.leftBtn).on('click', () => {
+    const page = changeArrows('left');
     return createCard.createCard(page, 'main', false);
-  }
-  if (target === 'C-F') {
-    const changeMeasurement = metric(true);
-    if (!val || val[0] == '') {
-      return activate(false, changeMeasurement);
-    }
-    const data = await weatherCall.reverseGeocode(...val);
-    const { lat, lon } = data[0];
-    return activate({ lat, long: lon }, changeMeasurement);
-  }
-});
+  });
+  //page right
+  $(DOM.dom.rightBtn).on('click', () => {
+    const page = changeArrows('right');
+    return createCard.createCard(page, 'main', false);
+  });
+  //C - F toggle
+  $(DOM.dom.cfBtn).on('click', async () => {
+    const val = await DOM.cFClick();
+    console.log(val);
+    return activate(...val);
+  });
+};
 
+addEventListeners();
 activate();

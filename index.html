@@ -29,6 +29,7 @@
     <title>The Weather</title>
   </head>
   <body>
+    <!--NAVABAR-->
     <header>
       <div class="navbar">
         <h2 id="location-name"></h2>
@@ -46,13 +47,15 @@
         </section>
       </div>
     </header>
+    <!--BG IMAGE CONTAINER-->
     <div class="background"><div class="background-image"></div></div>
+    <!--LEFT AND RIGHT BUTTONS-->
     <div id="left-right-btn">
       <button id="left"><i class="fa-solid fa-circle-arrow-left"></i></button>
       <button id="right"><i class="fa-solid fa-circle-arrow-right"></i></button>
     </div>
     <main id="container"></main>
-    <footer></footer>
+
     <!--TEMPLATE FOR CARDS BELOW-->
     <template id="main-card-template">
       <div class="widget main-wid widget-1">
@@ -71,7 +74,8 @@
 
           <div class="misc">
             <div class="temp">
-              <i class="fa-solid fa-temperature-half"></i>%HIGH% - %LOW%%TEMPMES%
+              <i class="fa-solid fa-temperature-half"></i>%HIGH% -
+              %LOW%%TEMPMES%
             </div>
             <span>
               <i class="fa-solid fa-cloud-sun-rain"></i>
@@ -81,7 +85,8 @@
 
             <div class="desc">%DESC%</div>
             <div class="wind">
-              <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD% %WINDMES%
+              <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD%
+              %WINDMES%
             </div>
             <div class="humidity">
               <i class="fa-solid fa-water"></i>Humidity: %HUMIDITY%%
@@ -90,7 +95,8 @@
               <i class="fa-solid fa-circle"></i>Pressure: %PRESSURE%
             </div>
             <div class="dewpoint">
-              <i class="fa-solid fa-droplet"></i>Dewpoint: %DEWPOINT%%DEWPOINTMES%
+              <i class="fa-solid fa-droplet"></i>Dewpoint:
+              %DEWPOINT%%DEWPOINTMES%
             </div>
             <div class="visability">
               <i class="fa-solid fa-eye"></i>Visability: %VISABILITY% %VISMES%
@@ -102,5 +108,11 @@
         </div>
       </div>
     </template>
+    <!-- footer -->
+    <footer>
+      <span class="copyright"
+        ><i class="fa-solid fa-copyright"></i> Christopher Goldsmith 2022</span
+      >
+    </footer>
   </body>
 </html>
