@@ -1,6 +1,6 @@
 import * as weatherCall from '../models/get_data.js';
 import { getValue } from './search_bar.js';
-import { metric } from './C_F_btn.js';
+import { toggleUnits } from './C_F_btn.js';
 
 export const dom = {
   cfBtn: '#C-F',
@@ -12,20 +12,17 @@ export const dom = {
 
 //event tied to the C/F button in the dom to change temp measurements
 export const cFClick = async () => {
-  const changeMeasurement = metric(true);
-  let val = $(dom.locationName).text();
-  val = val.split(',');
-  val[1] = val[1].split('-');
-  val = [val[0], '', val[1][1]];
-  val;
-  console.log(val);
+  const changeMeasurement = toggleUnits(true);
+  let loc = $(dom.locationName).text();
+  //regexp parses the location string given by the api to seperate city, state, country into an array;
+  const regExpForLoc = /(\w+(\s\w+)?)/gi;
+  loc = loc.match(regExpForLoc);
   //this returns your current location if the searchbar has an empty address
-  if (!val || val[0] == '') {
+  if (!loc || loc[0] == '') {
     return [false, changeMeasurement];
   }
   //if a valid address is in the searchbar
-  const data = await weatherCall.reverseGeocode(...val);
-  console.log(data);
+  const data = await weatherCall.reverseGeocode(...loc);
   const { lat, lon } = data[0];
   return [{ lat, long: lon }, changeMeasurement];
 };
@@ -33,9 +30,8 @@ export const cFClick = async () => {
 //event tied to the search button in the dom
 export const searchclick = async () => {
   let val = getValue();
-  console.log(val);
   val = val.split(',');
   const data = await weatherCall.reverseGeocode(...val);
   const { lat, lon } = data[0];
-  return [{ lat, long: lon }, metric()];
+  return [{ lat, long: lon }, toggleUnits()];
 };

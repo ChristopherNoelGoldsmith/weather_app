@@ -1,49 +1,23 @@
-export const createCalWeek = function (day) {
+export const createCalWeek = function (month, day) {
   let date = new Date();
 
   const year = date.getFullYear();
-  const month = date.getMonth();
+  //const month = date.getMonth() + 1;
   //Passees values to get the 0-6 numberical value of the day of the week this specified date is on.
-  date = new Date(`${month + 1} ${day}, ${year} 07:00:00`);
+  date = new Date(`${month} ${day}, ${year} 07:00:00`);
   date = date.getDay();
   return date;
 };
 
-export const dayOfWeek = (el) => {
-  el = el * 1;
-
-  switch (el) {
-    case 0:
-      return 'Sun';
-      break;
-    case 1:
-      return 'Mon';
-      break;
-    case 2:
-      return 'Tue';
-      break;
-    case 3:
-      return 'Wed';
-      break;
-    case 4:
-      return 'Thu';
-      break;
-    case 5:
-      return 'Fri';
-      break;
-    case 6:
-      return 'Sat';
-      break;
-    default:
-      return 'Sun?';
-      break;
-  }
+export const dayOfWeek = (day) => {
+  const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
+  return days[day] ?? 'Sun';
 };
 
-export const getMonthString = (el) => {
-  el = el * 1;
+export const getMonthString = (month) => {
+  month = month * 1;
 
-  switch (el) {
+  switch (month) {
     case 1:
       return 'Janurary';
       break;

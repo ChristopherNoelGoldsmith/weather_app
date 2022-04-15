@@ -8,7 +8,9 @@ import * as apiKeys from '../../sass/api_keys.js';
 export const reverseGeocode = async (city, state = '', country = '') => {
   const limit = 3;
   const key = apiKeys.REVGEO_API_KEY;
-  console.log(city, state, country);
+  //error handling for certain countries that do not return positive on search due to the api's data;
+  //looking for better fix;
+  if (/\d\d/.test(state)) state = '';
 
   const options = {
     method: 'GET',
@@ -21,7 +23,7 @@ export const reverseGeocode = async (city, state = '', country = '') => {
   );
 
   const json = await data.json();
-  console.log(json);
+  //console.log(json);
   return json;
 };
 
@@ -47,9 +49,9 @@ export function getLatLon() {
   }
 }
 
-//obtains data from the weatherbit apit utilizing lat and long obtained from
-//either the js geolocation api or the reverseGeocode (openweathermapapi) function
-//has option to add unit to change to metric. Default is imperial.
+//!!obtains data from the weatherbit apit utilizing lat and long obtained from
+//!!ither the js geolocation api or the reverseGeocode (openweathermapapi) function
+//!!has option to add unit to change to metric. Default is imperial.
 //
 export const getData = async function (lat, long, unit) {
   try {
@@ -59,7 +61,7 @@ export const getData = async function (lat, long, unit) {
     );
 
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
     return json;
   } catch (err) {
     errorMessage('getData', err);

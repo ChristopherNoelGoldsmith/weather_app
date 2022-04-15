@@ -1,5 +1,5 @@
 //creates cards that append to the dom
-export const createCard = (cards, type, clear = true) => {
+export const createCard = (cards, type) => {
   $('main').children().remove();
   cards.forEach((el) => {
     $(type).append(el);
@@ -7,8 +7,7 @@ export const createCard = (cards, type, clear = true) => {
 };
 
 //changes text in navbar upon a search request
-export const changeTitle = (data) => {
-  const { state_code, city_name, country_code } = data;
-  const text = `${city_name}, ${state_code} - ${country_code}`;
+export const changeTitle = (state, city, country) => {
+  const text = `${city}, ${state} - ${country}`;
   return $('#location-name').text(text);
 };

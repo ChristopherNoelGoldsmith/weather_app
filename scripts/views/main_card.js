@@ -1,6 +1,6 @@
 export const createMainCards = (data, mes) => {
   const {
-    datetime,
+    dayOfWeek,
     day,
     month,
     high_temp,
@@ -42,7 +42,7 @@ export const createMainCards = (data, mes) => {
   if (mes === 'C' || mes === 'M' || mes == false) replacer(metric);
   if (mes === 'F' || mes === 'I') replacer(imperial);
   //
-  template = template.replace(/%TODAY%/g, datetime);
+  template = template.replace(/%DAYOFWEEK%/g, dayOfWeek);
   template = template.replace(/%DAY%/g, day);
   template = template.replace(/%MONTH%/g, month);
   template = template.replace(/%HIGH%/g, high_temp);

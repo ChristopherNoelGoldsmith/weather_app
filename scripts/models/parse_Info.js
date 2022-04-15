@@ -1,4 +1,3 @@
-import { errorMessage } from './error_msg.js';
 import * as monthDay from './month_day.js';
 
 //parses the data attribute of the API and parses all values used in cards then places them in an array of arrays
@@ -28,17 +27,16 @@ export const parseData = (data) => {
     wind_spd = Math.round(wind_spd);
 
     //converts the datetime to a day of the week, date, month ex: Monday, the first, April
-    let month = /-\d\d-/.exec(datetime);
-    month = /\d\d/.exec(month)[0];
-    month = monthDay.getMonthString(month);
-
-    let day = /\d\d$/.exec(datetime)[0];
-    datetime = monthDay.createCalWeek(day);
-    datetime = monthDay.dayOfWeek(datetime);
+    const regExpForMonthAndDay = /(?<=-)(\d\d){1}/g;
+    let monthAndDay = datetime.match(regExpForMonthAndDay);
+    const month = monthDay.getMonthString(monthAndDay[0]);
+    let day = monthAndDay[1];
+    day = monthDay.createCalWeek(month, day);
+    const dayOfWeek = monthDay.dayOfWeek(day);
 
     //
     return {
-      datetime, //1
+      dayOfWeek, //1
       day, //2
       month, //3
       high_temp, //4
@@ -59,28 +57,13 @@ export const parseData = (data) => {
   return data;
 };
 
-export const getThisPlace = (data) => {
-  const { state_code, city_name, country_code } = data;
+export const getMonth = function (data) {
+  data = data.data.map((date) => {
+    date = date.datetime.match(/-\d\d-/)[0];
+    date = date.match(/\d\d/)[0];
+    date = monthDay.getMonthString(date);
 
-  return {
-    city_name,
-    state_code,
-    country_code,
-  };
-};
-
-export const getMonth = function (data, string = false) {
-  try {
-    data = data.data.map((el) => {
-      el = el.datetime.match(/-\d\d-/)[0];
-      el = el.match(/\d\d/)[0];
-
-      if ((string = 'string')) el = monthDay.getMonthString(el);
-
-      return el;
-    });
-    return data;
-  } catch (err) {
-    errorMessage('getMonth', err);
-  }
+    return el;
+  });
+  return data;
 };

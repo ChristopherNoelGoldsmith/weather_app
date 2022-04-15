@@ -110,23 +110,29 @@ body{
     border-radius: 20%;
     border: none;
     margin: auto;
-    z-index: 1000;
-    p{
-        position: justify;
-        font-size: 3.5vh;
-        text-align: center;
-        font-weight: bolder;
-        vertical-align: middle;
-        color: white;
-        margin: auto;
-    }
 }
 .C{
-    background-color:cyan;
+    background-color: cyan;
 }
-.F{
+.F{ 
     background-color: crimson;
 }
+.C span, 
+.F span{
+    position: justify;
+    font-size: 3.5vh;
+    text-align: center;
+    font-weight: bolder;
+    vertical-align: middle;
+    color: white;
+    margin: auto;
+    z-index: 2000;
+}
+.c-unit { display: none; }
+.f-unit { display: none; }
+.C .c-unit { display: inherit; }
+.F .f-unit { display: inherit; }
+
 #C-F-btn:hover{
     opacity: 0.8;
 }
