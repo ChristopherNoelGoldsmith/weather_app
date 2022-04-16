@@ -1,9 +1,9 @@
 import * as weatherCall from './models/get_data.js';
 import * as parseInfo from './models/parse_Info.js';
-import * as createCard from './views/create_card.js';
-import { createMainCards } from './views/main_card.js';
+import * as mainCard from './views/main_card.js';
+import * as cfBtn from './views/C_F_btn.js';
 import { changeArrows } from './views/side_arrows.js';
-import * as DOM from './views/dom.js';
+import { dom } from './views/dom.js';
 
 //connects to the api, retrives the data then parses it.
 const locationController = async (latLong, mesType) => {
@@ -29,14 +29,14 @@ const cardController = (data, mesType) => {
   //is what creates cards
   //can use array.split() to reduce the number of cards returned
   const cards = weatherData.map((measurments) => {
-    return createMainCards(measurments, mesType);
+    return mainCard.createMainCards(measurments, mesType);
   });
   //TO DO!
   //take cards wanted as visable and append them to the main container
   //take cards not-wanted and make them invisable.
   //have scrolling effect before the visability change.
-  createCard.changeTitle(state_code, city_name, country_code);
-  createCard.createCard(cards, 'main');
+  mainCard.changeTitle(state_code, city_name, country_code);
+  mainCard.createCard(cards, 'main');
 };
 
 //initiates the api and cards //the default value of mesType = 'I' is to default it to imperial measurements
@@ -47,29 +47,25 @@ const activate = async (latLong, mesType = 'I') => {
 
 const addEventListeners = () => {
   //search button
-  $(DOM.dom.searchBtn).on('click', async () => {
-    const val = await DOM.searchclick();
+  $(dom.searchBtn).on('click', async () => {
+    const val = await cfBtn.searchclick();
     return activate(...val);
   });
   //page left
-  $(DOM.dom.leftBtn).on('click', () => {
+  $(dom.leftBtn).on('click', () => {
     const page = changeArrows('left');
-    return createCard.createCard(page, 'main', false);
+    return mainCard.createCard(page, 'main', false);
   });
   //page right
-  $(DOM.dom.rightBtn).on('click', () => {
+  $(dom.rightBtn).on('click', () => {
     const page = changeArrows('right');
-    return createCard.createCard(page, 'main', false);
+    return mainCard.createCard(page, 'main', false);
   });
   //C - F toggle NEEDS TO BE FIXED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   document.querySelector('#C-F-btn').addEventListener('click', async () => {
-    const val = await DOM.cFClick();
-    console.log(val);
+    const val = await cfBtn.cFClick();
     return activate(...val);
   });
-  /*$(DOM.dom.cfBtn).on('click', async () => {
-    
-  })*/
 };
 
 addEventListeners();
