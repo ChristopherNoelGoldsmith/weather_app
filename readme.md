@@ -23,7 +23,6 @@
 - [x] Fix day of the week display.
 - [] Deep clean and organize code.
 - [] Improve Searchbar styles on mobile.
-- [] Polish UI and make tablet screen more compatable
 - [] Improve searchbar to include industry standard functionallity.
 - [] Include a daily weather option for next 24 hours.
 - [x] Have arrow sliders to parse through cards.

@@ -68,5 +68,5 @@ const addEventListeners = () => {
   });
 };
 
-addEventListeners();
-activate();
+//addEventListeners();
+//activate();
