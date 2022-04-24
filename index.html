@@ -19,7 +19,8 @@
       crossorigin="anonymous" />
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/cards.css" />
     <title>The Weather</title>
   </head>
 
@@ -39,10 +40,10 @@
             <li><label for="C-F-btn">Measurment - </label><button
                 id="C-F-btn" class="F">
                 <span class="c-unit flex-it">
-                  <p>C</p>
+                  C
                 </span>
                 <span class="f-unit flex-it">
-                  <p>F</p>
+                  F
                 </span>
               </button></li>
             <li></li>
@@ -73,7 +74,57 @@
       <button id="right"><i
           class="fa-solid fa-circle-arrow-right"></i></button>
     </div>
-    <main id="container"></main>
+    <main id="container" class="flex-it">
+
+      <section class="weather-card">
+        <ul class="day flex-it">
+          <li class="weekday">%DAYOFWEEK%</li>
+          <li class="date">%MONTH%, %DAY%</li>
+        </ul>
+        <figure class="img flex-it">
+          <img class="weather-icon"
+            src="https://www.weatherbit.io/static/img/icons/c03d.png"
+            alt="weather icons" />
+        </figure>
+
+        <ul class="misc">
+          <li class="temp">
+            <i class="fa-solid fa-temperature-half fa-2x"></i>%HIGH% -
+            %LOW%%TEMPMES%
+          </li>
+          <li class="precipitation flex-it">
+            <i class="fa-solid fa-cloud-sun-rain fa-2x"></i>
+            <figure><progress min="0" max="100" value="50"></progress>
+              %PRECIP% %</figure>
+          </li>
+
+          <li class="desc">%DESC%</li>
+          <li class="wind">
+            <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD%
+            %WINDMES%
+          </li>
+          <li class="humidity">
+            <i class="fa-solid fa-water"></i>Humidity: %HUMIDITY%%
+          </li>
+          <li class="pressure">
+            <i class="fa-solid fa-circle"></i>Pressure: %PRESSURE%
+          </li>
+          <li class="dewpoint">
+            <i class="fa-solid fa-droplet"></i>Dewpoint:
+            %DEWPOINT%%DEWPOINTMES%
+          </li>
+          <li class="visability">
+            <i class="fa-solid fa-eye"></i>Visability: %VISABILITY%
+            %VISMES%
+          </li>
+          <li class="uv-index">
+            <i class="fa-solid fa-sun"></i>UV Index: %UV%
+          </li>
+          </li>
+          </li>
+      </section>
+
+    </main>
 
     <!--TEMPLATE FOR CARDS BELOW-->
     <template id="main-card-template">

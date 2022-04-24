@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node app.js",
-    "sass": "sass --watch ./sass:./ --style compressed --no-source-map"
+    "sass": "sass --watch ./sass:./styles --style compressed --no-source-map"
   },
   "repository": {
     "type": "git",

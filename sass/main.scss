@@ -32,6 +32,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 
@@ -53,9 +54,11 @@ body {
 
 .background {
     z-index: -1000;
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
 }
 
 .background::before {
@@ -66,7 +69,7 @@ body {
     background-size: cover;
     width: 200%;
     height: 100%;
-    background-image: url('./img/normal.jpg');
+    background-image: url('.././img/normal.jpg');
     animation-name: scrolling;
     animation-duration: 60s;
     animation-iteration-count: infinite;
