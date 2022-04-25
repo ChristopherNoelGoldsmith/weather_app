@@ -1,4 +1,4 @@
-export const createMainCards = (data, mes) => {
+export const createMainCards = (data, mes, cardArrIndex) => {
   const {
     dayOfWeek,
     day,
@@ -16,7 +16,6 @@ export const createMainCards = (data, mes) => {
     icon,
     description,
   } = data;
-
   let template = $('#main-card-template').html();
   //MEASUREMENT REPLACEMENT
   const imperial = {
@@ -42,6 +41,11 @@ export const createMainCards = (data, mes) => {
   if (mes === 'C' || mes === 'M' || mes == false) replacer(metric);
   if (mes === 'F' || mes === 'I') replacer(imperial);
   //
+
+  cardArrIndex <= 4
+    ? template = template.replace(/%VISABILITYCLASS%/g, 'visable') :
+    template = template.replace(/%VISABILITYCLASS%/g, '');
+
   template = template.replace(/%DAYOFWEEK%/g, dayOfWeek);
   template = template.replace(/%DAY%/g, day);
   template = template.replace(/%MONTH%/g, month);

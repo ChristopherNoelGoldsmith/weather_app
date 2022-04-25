@@ -1,7 +1,8 @@
 import * as weatherCall from './models/get_data.js';
 import * as parseInfo from './models/parse_Info.js';
 import * as mainCard from './views/main_card.js';
-import * as cfBtn from './views/C_F_btn.js';
+import { toggleCelcFaren } from './views/C_F_btn_views.js'
+import { searchClick, cFClick } from './models/C_F_btn_model.js';
 import { changeArrows } from './views/side_arrows.js';
 import { dom } from './views/dom.js';
 
@@ -28,13 +29,9 @@ const cardController = (data, mesType) => {
   const { state_code, city_name, country_code } = data.data;
   //is what creates cards
   //can use array.split() to reduce the number of cards returned
-  const cards = weatherData.map((measurments) => {
-    return mainCard.createMainCards(measurments, mesType);
+  const cards = weatherData.map((measurments, index) => {
+    return mainCard.createMainCards(measurments, mesType, index);
   });
-  //TO DO!
-  //take cards wanted as visable and append them to the main container
-  //take cards not-wanted and make them invisable.
-  //have scrolling effect before the visability change.
   mainCard.changeTitle(state_code, city_name, country_code);
   mainCard.createCard(cards, 'main');
 };
@@ -48,8 +45,9 @@ const activate = async (latLong, mesType = 'I') => {
 const addEventListeners = () => {
   //search button
   $(dom.searchBtn).on('click', async () => {
-    const val = await cfBtn.searchclick();
-    return activate(...val);
+    const latLon = await searchClick();
+    const mesToggle = toggleCelcFaren();
+    return activate(latLon, mesToggle);
   });
   //page left
   $(dom.leftBtn).on('click', () => {
@@ -61,10 +59,10 @@ const addEventListeners = () => {
     const page = changeArrows('right');
     return mainCard.createCard(page, 'main', false);
   });
-  //C - F toggle NEEDS TO BE FIXED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   document.querySelector('#C-F-btn').addEventListener('click', async () => {
-    const val = await cfBtn.cFClick();
-    return activate(...val);
+    const latLon = await cFClick();
+    const mesToggle = toggleCelcFaren(true);
+    return activate(latLon, mesToggle);
   });
 };
 

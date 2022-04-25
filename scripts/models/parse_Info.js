@@ -29,12 +29,10 @@ export const parseData = (data) => {
     //converts the datetime to a day of the week, date, month ex: Monday, the first, April
     const regExpForMonthAndDay = /(?<=-)(\d\d){1}/g;
     let monthAndDay = datetime.match(regExpForMonthAndDay);
-    console.log(monthAndDay);
     const month = monthDay.getMonthString(monthAndDay[0]);
     const day = monthAndDay[1];
     let dayOfWeek = monthDay.createCalWeek(month, day);
     dayOfWeek = monthDay.dayOfWeek(day);
-
     //
     return {
       dayOfWeek, //1
