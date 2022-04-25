@@ -19,20 +19,18 @@ li {
     }
 }
 
+i {
+    margin-right: 3px;
+}
 
 //Styles for the main wethaer cards;
 #container {
     position: relative;
-    top: 8vh;
+    top: 9vh;
     padding: 0.2vh 1vw;
-
-    * {
-        padding: 0px main.$normal-padding;
-    }
 
     .weather-card {
         border-radius: 10%;
-        padding: main.$normal-padding;
         background: main.$main-color;
         display: flex;
         flex-direction: column;
@@ -41,6 +39,7 @@ li {
         margin: 0.5%;
 
         .day {
+            padding: 5px;
             flex-direction: column;
             font-size: main.$font-size-mid;
         }
@@ -72,16 +71,47 @@ li {
             //Precipitation line
             li.precipitation {
                 text-align: center;
+
+                progress {
+                    width: 50%;
+                }
             }
 
             //The description of the forcast
             li.desc {
                 text-align: center;
-                font-size: main.$font-size-mid;
+                font-size: main.$font-size-small;
                 border-bottom: 1px main.$secondary-color solid;
                 margin-bottom: 3px;
             }
 
         }
+    }
+}
+
+//Below are the arrow buttons for desktop
+#left-right-btn {
+    button {
+        border: transparent;
+        background: transparent;
+        z-index: 100;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    button#left {
+        position: absolute;
+        left: 0;
+        top: 45%;
+        height: 10%;
+    }
+
+    button#right {
+        position: absolute;
+        right: 0;
+        top: 45%;
+        height: 10%;
     }
 }

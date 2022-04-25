@@ -57,7 +57,7 @@ export const getData = async function (lat, long, unit) {
   try {
     const key = apiKeys.WEATHER_API_KEY;
     const data = await fetch(
-      `https://api.weatherbit.io/v2.0/forecast/daily?key=${key}&lat=${lat}&lon=${long}&units=${unit}`
+      `https://api.weatherbit.io/v2.0/forecast/daily?key=${key}&lat=${lat}&lon=${long}&units=${unit}&days=14`
     );
 
     const json = await data.json();
@@ -67,3 +67,15 @@ export const getData = async function (lat, long, unit) {
     errorMessage('getData', err);
   }
 };
+
+//In Progress
+export const getHourlyForcast = async function (lat, long, unit) {
+  try {
+    const key = apiKeys.WEATHER_API_KEY;
+    const data = await fetch(`
+    https://api.weatherbit.io/v2.0/forecast/hourly?&lat=${lat}&lon=${long}&units=${unit}&key=${key}&hours=48`)
+  }
+  catch (err) {
+    errorMessage('getHourlyForcast', err);
+  }
+}
