@@ -21,9 +21,8 @@
 ## TO DO LIST
 
 - [x] Fix day of the week display.
-- [] Deep clean and organize code.
 - [] Improve Searchbar styles on mobile.
-- [] Improve searchbar to include industry standard functionallity.
 - [] Include a daily weather option for next 24 hours.
-- [x] Have arrow sliders to parse through cards.
+- [] Include a favorites list in sidebar menu.
+- [] Improve arrow sliders to parse through cards with animation.
 - [x] Add imperial to metric measure toggle.

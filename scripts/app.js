@@ -64,6 +64,14 @@ const addEventListeners = () => {
     const mesToggle = toggleCelcFaren(true);
     return activate(latLon, mesToggle);
   });
+  //info-cards in menu
+  const sideBarInfoList = ['humidity-info', "pressure-info", "dewpoint-info", "visability-info", "uv-info"];
+  sideBarInfoList.forEach(element => {
+    return document.getElementById(element).addEventListener('click', () => mainCard.createInfoCard(element));
+  });
+  //To close leftover elements of the sidebar
+  document.querySelector('.toggler').addEventListener('click', () => mainCard.createInfoCard());
+
 };
 
 addEventListeners();

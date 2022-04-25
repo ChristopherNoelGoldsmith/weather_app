@@ -30,7 +30,7 @@
       <nav class="navbar">
 
         <!--Hamburger Menu-->
-        <section>
+        <section id="hamburger-container">
           <input type="checkbox" class="toggler" name="hamburger-init"
             id="toggler">
           <div class="hamburger">
@@ -46,11 +46,30 @@
                   F
                 </span>
               </button></li>
-            <li></li>
-            <li></li>
+            <li id="learning-info">
+              <ul>
+                <li id="humidity-info"><i class="fa-solid fa-water"></i>
+                  Humidity?
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                <li id="pressure-info"><i class="fa-solid fa-circle"></i>
+                  Pressure?
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                <li id="dewpoint-info"><i class="fa-solid fa-droplet"></i>
+                  Dewpoint?
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                <li id="visability-info"><i class="fa-solid fa-eye"></i>
+                  Visability?
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                <li id="uv-info"><i class="fa-solid fa-sun"></i>
+                  UV Index? <i class="fa-solid fa-chevron-right"></i></li>
+              </ul>
+            </li>
           </ul>
         </section>
-
         <!--Searchbar-->
         <section id="search-bar">
           <input type="search" placeholder="City*, State, Country"
@@ -67,6 +86,10 @@
     <!--BG IMAGE CONTAINER-->
     <div class="background">
     </div>
+    <!--Info Square popup for menu-->
+    <section id="info-square" class="">
+      <p id="info-square-text"></p>
+    </section>
     <!--LEFT AND RIGHT BUTTONS-->
     <div id="left-right-btn">
       <button id="left"><i
@@ -75,111 +98,64 @@
           class="fa-solid fa-circle-arrow-right fa-2x"></i></button>
     </div>
     <main id="container" class="flex-it">
-
-      <section class="weather-card %VISABILITYCLASS%">
-        <ul class="day flex-it">
-          <li class="weekday">%DAYOFWEEK%</li>
-          <li class="date">%MONTH%, %DAY%</li>
-        </ul>
-        <figure class="img flex-it">
-          <img class="weather-icon"
-            src="https://www.weatherbit.io/static/img/icons/c03d.png"
-            alt="weather icons" />
-        </figure>
-
-        <ul class="misc">
-          <li class="temp">
-            <i class="fa-solid fa-temperature-half fa-2x"></i>%HIGH% -
-            %LOW%%TEMPMES%
-          </li>
-          <li class="precipitation flex-it">
-            <i class="fa-solid fa-cloud-sun-rain fa-2x"></i>
-            <figure><progress min="0" max="100" value="50"></progress>
-              %PRECIP% %</figure>
-          </li>
-
-          <li class="desc">%DESC%</li>
-          <li class="wind">
-            <i class="fa-solid fa-wind"></i> Wind: %WIND_DIR% %WIND_SPD%
-            %WINDMES%
-          </li>
-          <li class="humidity">
-            <i class="fa-solid fa-water"></i> Humidity: %HUMIDITY%%
-          </li>
-          <li class="pressure">
-            <i class="fa-solid fa-circle"></i> Pressure: %PRESSURE%
-          </li>
-          <li class="dewpoint">
-            <i class="fa-solid fa-droplet"></i> Dewpoint:
-            %DEWPOINT%%DEWPOINTMES%
-          </li>
-          <li class="visability">
-            <i class="fa-solid fa-eye"></i> Visability: %VISABILITY%
-            %VISMES%
-          </li>
-          <li class="uv-index">
-            <i class="fa-solid fa-sun"></i> UV Index: %UV%
-          </li>
-          </li>
-          </li>
-      </section>
-
     </main>
 
-    <!--TEMPLATE FOR CARDS BELOW-->
-    <template id="main-card-template">
-      <section class="weather-card %VISABILITYCLASS%">
-        <ul class="day flex-it">
-          <li class="weekday">%DAYOFWEEK%</li>
-          <li class="date">%MONTH%, %DAY%</li>
-        </ul>
-        <figure class="img flex-it">
-          <img class="weather-icon"
-            src="https://www.weatherbit.io/static/img/icons/c03d.png"
-            alt="weather icons" />
-        </figure>
-
-        <ul class="misc">
-          <li class="temp">
-            <i class="fa-solid fa-temperature-half"></i> %HIGH% -
-            %LOW%%TEMPMES%
-          </li>
-          <li class="precipitation">
-            <figure>
-              <i class="fa-solid fa-cloud-sun-rain fa-2x"></i><progress
-                min="0" max="100" value="%PRECIP%"></progress>
-              %PRECIP%%
-            </figure>
-          </li>
-
-          <li class="desc">%DESC%</li>
-          <li class="wind">
-            <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD%
-            %WINDMES%
-          </li>
-          <li class="humidity">
-            <i class="fa-solid fa-water"></i>Humidity: %HUMIDITY%%
-          </li>
-          <li class="pressure">
-            <i class="fa-solid fa-circle"></i>Pressure: %PRESSURE%
-          </li>
-          <li class="dewpoint">
-            <i class="fa-solid fa-droplet"></i>Dewpoint:
-            %DEWPOINT%%DEWPOINTMES%
-          </li>
-          <li class="visability">
-            <i class="fa-solid fa-eye"></i>Visability: %VISABILITY%
-            %VISMES%
-          </li>
-          <li class="uv-index">
-            <i class="fa-solid fa-sun"></i>UV Index: %UV%
-          </li>
-          </li>
-          </li>
-      </section>
-    </template>
     <!-- footer -->
     <footer>
+
+      <!--TEMPLATE FOR CARDS BELOW-->
+      <template id="main-card-template">
+        <section class="weather-card %VISABILITYCLASS%">
+          <ul class="day flex-it">
+            <li class="weekday">%DAYOFWEEK%</li>
+            <li class="date">%MONTH%, %DAY%</li>
+          </ul>
+          <figure class="img flex-it">
+            <img class="weather-icon"
+              src="https://www.weatherbit.io/static/img/icons/c03d.png"
+              alt="weather icons" />
+          </figure>
+
+          <ul class="misc">
+            <li class="temp">
+              <i class="fa-solid fa-temperature-half"></i> %HIGH% -
+              %LOW% %TEMPMES%
+            </li>
+            <li class="precipitation">
+              <figure>
+                <i class="fa-solid fa-cloud-sun-rain fa-2x"></i><progress
+                  min="0" max="100" value="%PRECIP%"></progress>
+                %PRECIP%%
+              </figure>
+            </li>
+
+            <li class="desc">%DESC%</li>
+            <li class="wind">
+              <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD%
+              %WINDMES%
+            </li>
+            <li class="humidity">
+              <i class="fa-solid fa-water"></i>Humidity: %HUMIDITY%%
+            </li>
+            <li class="pressure">
+              <i class="fa-solid fa-circle"></i>Pressure: %PRESSURE%
+            </li>
+            <li class="dewpoint">
+              <i class="fa-solid fa-droplet"></i>Dewpoint:
+              %DEWPOINT%%DEWPOINTMES%
+            </li>
+            <li class="visability">
+              <i class="fa-solid fa-eye"></i>Visability: %VISABILITY%
+              %VISMES%
+            </li>
+            <li class="uv-index">
+              <i class="fa-solid fa-sun"></i>UV Index: %UV%
+            </li>
+            </li>
+            </li>
+        </section>
+      </template>
+
       <span class="copyright"><i class="fa-solid fa-copyright"></i>
         Christopher Goldsmith 2022</span>
     </footer>

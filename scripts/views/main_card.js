@@ -1,3 +1,5 @@
+import { domInfoText } from "./dom.js";
+
 export const createMainCards = (data, mes, cardArrIndex) => {
   const {
     dayOfWeek,
@@ -65,9 +67,27 @@ export const createMainCards = (data, mes, cardArrIndex) => {
   return template;
 };
 
+export const createInfoCard = (type = null) => {
+  //targets the info square and its child to inject the appropriate text from the dom views file.
+  const containerOfTemplate = document.getElementById('info-square');
+  //line below used for values other than the list items to close the box
+  console.log(type);
+  if (type == null) return containerOfTemplate.classList.remove('vis');
+  const template = document.getElementById('info-square-text');
+  const text = domInfoText[type];
+
+  if (text != template.innerText) containerOfTemplate.classList.remove('vis');
+
+  template.innerText = text;
+  if (!containerOfTemplate.classList.contains('vis')) return containerOfTemplate.classList.add('vis');
+  return containerOfTemplate.classList.remove('vis');
+
+}
+
 //creates cards that append to the dom
 export const createCard = (cards, type) => {
-  $('main').children().remove();
+  $(type).children().remove();
+  if (typeof (cards) != Array) return $(type).append(cards);
   cards.forEach((el) => {
     $(type).append(el);
   });
