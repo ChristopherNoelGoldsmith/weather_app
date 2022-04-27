@@ -1,0 +1,148 @@
+@use 'main';
+
+li {
+    list-style: none;
+}
+
+//for the .weather-icon animation
+@keyframes bob-up-down {
+    0% {
+        transform: translateY(0px)
+    }
+
+    50% {
+        transform: translateY(2vh)
+    }
+
+    100% {
+        transform: translateY(0px)
+    }
+}
+
+i {
+    margin-right: 3px;
+}
+
+//Styles for the main wethaer cards;
+#container {
+    position: relative;
+    top: 9vh;
+    padding: 0.2vh 1vw;
+
+    .weather-card {
+        border-radius: 10%;
+        background: main.$main-color;
+        display: none;
+        flex-direction: column;
+        width: 18vw;
+        font-size: main.$font-size-small;
+        margin: 0.5%;
+
+        opacity: 0;
+        transition: all 0.4s ease;
+
+        .day {
+            padding: 5px;
+            flex-direction: column;
+            font-size: main.$font-size-mid;
+        }
+
+        .img {
+            .weather-icon {
+                animation-name: bob-up-down;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+            }
+        }
+
+        //The Details for the Weather Cards
+        .misc {
+            li {
+                width: 14vw;
+                text-align: justify;
+                padding: 5px;
+            }
+
+            //Tempurature line
+            li.temp {
+                text-align: center;
+                align-items: center;
+                font-size: main.$font-size-mid;
+            }
+
+            //Precipitation line
+            li.precipitation {
+                text-align: center;
+
+                progress {
+                    width: 50%;
+                }
+            }
+
+            //The description of the forcast
+            li.desc {
+                text-align: center;
+                font-size: main.$font-size-small;
+                border-bottom: 1px main.$secondary-color solid;
+                margin-bottom: 3px;
+            }
+
+        }
+    }
+
+    .weather-card.visable {
+        display: flex;
+        opacity: 1;
+        transition: all 0.4s ease;
+    }
+}
+
+//Below are the arrow buttons for desktop
+#left-right-btn {
+    button {
+        border: transparent;
+        background: transparent;
+        z-index: 100;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    button#left {
+        position: absolute;
+        left: 0;
+        top: 45%;
+        height: 10%;
+    }
+
+    button#right {
+        position: absolute;
+        right: 0;
+        top: 45%;
+        height: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    #container {
+        display: flex;
+        flex-direction: row;
+
+        .weather-card {
+            display: flex;
+            width: 90vw;
+
+            .misc {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                li {
+                    padding: 2% 7%;
+                }
+            }
+        }
+    }
+}

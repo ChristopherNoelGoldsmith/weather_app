@@ -1,6 +1,8 @@
-export const createMainCards = (data, mes) => {
+import { domInfoText } from "./dom.js";
+
+export const createMainCards = (data, mes, cardArrIndex) => {
   const {
-    dayOfWeek,
+    weekday,
     day,
     month,
     high_temp,
@@ -16,7 +18,6 @@ export const createMainCards = (data, mes) => {
     icon,
     description,
   } = data;
-
   let template = $('#main-card-template').html();
   //MEASUREMENT REPLACEMENT
   const imperial = {
@@ -42,7 +43,12 @@ export const createMainCards = (data, mes) => {
   if (mes === 'C' || mes === 'M' || mes == false) replacer(metric);
   if (mes === 'F' || mes === 'I') replacer(imperial);
   //
-  template = template.replace(/%DAYOFWEEK%/g, dayOfWeek);
+
+  cardArrIndex <= 4
+    ? template = template.replace(/%VISABILITYCLASS%/g, 'visable') :
+    template = template.replace(/%VISABILITYCLASS%/g, '');
+
+  template = template.replace(/%DAYOFWEEK%/g, weekday);
   template = template.replace(/%DAY%/g, day);
   template = template.replace(/%MONTH%/g, month);
   template = template.replace(/%HIGH%/g, high_temp);
@@ -61,9 +67,31 @@ export const createMainCards = (data, mes) => {
   return template;
 };
 
+export const getInfoCard = (type = null) => {
+  if (type == null) return;
+  let template = $('#info-square-template').html();
+
+  //accesses the text object using the sidebar list text as a key.
+  const text = domInfoText[type];
+
+  if (type == 'remove') return $('#info-square').removeClass('vis');
+  $('#info-square').addClass('vis');
+
+  template = template.replace(/%INFOSQUARE%/, text);
+  return [template];
+};
+
+export const createFavoriteCard = (fav) => {
+  let template = $('#favorites-template').html();
+  template = fav.map(el => {
+    return template.replace(/%FAVORITES%/, el)
+  })
+  return template;
+}
+
 //creates cards that append to the dom
 export const createCard = (cards, type) => {
-  $('main').children().remove();
+  $(type).children().remove();
   cards.forEach((el) => {
     $(type).append(el);
   });

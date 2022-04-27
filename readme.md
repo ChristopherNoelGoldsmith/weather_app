@@ -4,10 +4,8 @@
 
 ### Features
 
-- Weather report for today.
 - Weather report for the week.
 - Changing graphics depending on forcast
-- Scrolling interface
 - Mobile support
 
 ### Uses
@@ -16,15 +14,11 @@
 - Weatherbit API for Weather Data
 - Jquery
 - Sass
-- MVC pattern
 
 ## TO DO LIST
 
 - [x] Fix day of the week display.
-- [] Deep clean and organize code.
+- [] Add default location function to the hearts.
 - [] Improve Searchbar styles on mobile.
-- [] Polish UI and make tablet screen more compatable
-- [] Improve searchbar to include industry standard functionallity.
-- [] Include a daily weather option for next 24 hours.
-- [x] Have arrow sliders to parse through cards.
+- [X] Include a favorites list in sidebar menu.
 - [x] Add imperial to metric measure toggle.
