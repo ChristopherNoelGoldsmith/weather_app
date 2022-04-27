@@ -1,4 +1,3 @@
-import { errorMessage } from './error_msg.js';
 import * as apiKeys from '../../sass/api_keys.js';
 
 //uses the openweathermap api to reverse geocode a location entered into the searchbar in the DOM
@@ -6,12 +5,12 @@ import * as apiKeys from '../../sass/api_keys.js';
 //only city is NEEDED to get a response but the state and country peramiters will give
 //the reverseGeocode function more accuracy
 export const reverseGeocode = async (city, state = '', country = '') => {
-  const limit = 3;
+  const limit = 5;
   const key = apiKeys.REVGEO_API_KEY;
   //error handling for certain countries that do not return positive on search due to the api's data;
-  //looking for better fix;
+  //looking for bet[ter fix;
   if (/\d\d/.test(state)) state = '';
-
+  console.log(`City:${city}`, `State:${state}`, `Country:${country}`);
   const options = {
     method: 'GET',
     headers: {
@@ -23,12 +22,13 @@ export const reverseGeocode = async (city, state = '', country = '') => {
   );
 
   const json = await data.json();
-  //console.log(json);
-  return json;
+  console.log(json);
+  const { lat, lon } = json[0];
+  return { lat, long: lon };
 };
 
 //gets lat and long
-export function getLatLon() {
+export function getCurrentLatLon() {
   // mutate position depending on requirements to give proper city
   try {
     return new Promise((res, rej) => {
@@ -55,6 +55,7 @@ export function getLatLon() {
 //
 export const getData = async function (lat, long, unit) {
   try {
+    console.log(lat, long);
     const key = apiKeys.WEATHER_API_KEY;
     const data = await fetch(
       `https://api.weatherbit.io/v2.0/forecast/daily?key=${key}&lat=${lat}&lon=${long}&units=${unit}&days=14`
@@ -68,14 +69,7 @@ export const getData = async function (lat, long, unit) {
   }
 };
 
-//In Progress
-export const getHourlyForcast = async function (lat, long, unit) {
-  try {
-    const key = apiKeys.WEATHER_API_KEY;
-    const data = await fetch(`
-    https://api.weatherbit.io/v2.0/forecast/hourly?&lat=${lat}&lon=${long}&units=${unit}&key=${key}&hours=48`)
-  }
-  catch (err) {
-    errorMessage('getHourlyForcast', err);
-  }
-}
+const errorMessage = (fnName, err) => {
+  console.log(`error in "${fnName}" function\b
+        ERROR: ${err}`);
+};

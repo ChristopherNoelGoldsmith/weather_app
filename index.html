@@ -68,18 +68,32 @@
                   UV Index? <i class="fa-solid fa-chevron-right"></i></li>
               </ul>
             </li>
+            <li id="favorites-container">
+              <ul id="favorites-menu">
+                <li class="favorite">
+                  %FAVORITE%
+                </li>
+                <li class="favorite">
+                  %FAVORITE%
+                </li>
+              </ul>
+            </li>
           </ul>
         </section>
         <!--Searchbar-->
         <section id="search-bar">
           <input type="search" placeholder="City*, State, Country"
-            class="search" /><button class="search-btn">
+            class="search" />
+          <button class="search-btn">
             <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+          </button>
+          <button id="favorites-btn" class=""><i
+              class="favorite-star fa-solid fa-star"></i>
           </button>
         </section>
 
         <!--Title/location name-->
-        <h2 id="location-name">Lorem, ipsum dolor.</h2>
+        <h2 id="location-name">Lorem - kippsum ipsum dolor</h2>
 
       </nav>
     </header>
@@ -88,7 +102,6 @@
     </div>
     <!--Info Square popup for menu-->
     <section id="info-square" class="">
-      <p id="info-square-text"></p>
     </section>
     <!--LEFT AND RIGHT BUTTONS-->
     <div id="left-right-btn">
@@ -155,7 +168,17 @@
             </li>
         </section>
       </template>
-
+      <template id="info-square-template">
+        <p>
+          %INFOSQUARE%
+        </p>
+      </template>
+      <template id="favorites-template">
+        <li class="favorite">
+          <p class="favorite-text">%FAVORITES%</p> <i
+            class="fa-solid fa-heart fa-2x"></i>
+        </li>
+      </template>
       <span class="copyright"><i class="fa-solid fa-copyright"></i>
         Christopher Goldsmith 2022</span>
     </footer>
