@@ -18,7 +18,7 @@
 ## TO DO LIST
 
 - [x] Fix day of the week display.
-- [x] Add default location function to the hearts.
+- [] Add default location function to the hearts.
 - [] Improve Searchbar styles on mobile.
 - [X] Include a favorites list in sidebar menu.
 - [x] Add imperial to metric measure toggle.

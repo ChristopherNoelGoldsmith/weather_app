@@ -124,3 +124,25 @@ i {
         height: 10%;
     }
 }
+
+@media (max-width: 768px) {
+    #container {
+        display: flex;
+        flex-direction: row;
+
+        .weather-card {
+            display: flex;
+            width: 90vw;
+
+            .misc {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                li {
+                    padding: 2% 7%;
+                }
+            }
+        }
+    }
+}
