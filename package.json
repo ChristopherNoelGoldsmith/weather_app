@@ -2,7 +2,7 @@
   "name": "weather",
   "version": "1.0.0",
   "description": "A basic weather reading app using weatherbit.io api",
-  "main": "app.js",
+  "main": "./scripts/app.js",
   "scripts": {
     "test": "node app.js",
     "sass": "sass --watch ./sass:./styles --style compressed --no-source-map"

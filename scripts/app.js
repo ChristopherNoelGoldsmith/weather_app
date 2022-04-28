@@ -18,7 +18,6 @@ import { dom } from './views/dom.js';
 
 //connects to the api, retrives the data then parses it.
 const locationController = async (locationLatLong, mesType) => {
-  console.log(locationLatLong);
   //targets a location with lat and long to obtain weather data from the api
 
   if (locationLatLong) {

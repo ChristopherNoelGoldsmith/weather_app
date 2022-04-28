@@ -97,45 +97,60 @@ header .navbar {
     z-index: 10;
     background: $main-color;
     border-bottom: 2px solid $secondary-color;
+
+    h2 {
+        color: $font-color-primary;
+        padding: $normal-padding;
+    }
+
+    #search-bar {
+        padding: $normal-padding;
+        margin-right: auto;
+        margin-left: 100px;
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+        }
+
+        .search-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.2);
+        }
+
+        input {
+            text-align: center;
+            border-radius: 10%;
+        }
+
+        input:hover {
+            text-align: center;
+            border-radius: 10%;
+            opacity: 0.95;
+        }
+    }
+
+    #favorites-btn {
+        border: none;
+        background: transparent;
+
+        i {
+            animation: star-spin 5s ease infinite;
+            color: white;
+        }
+
+        i:hover {
+            color: gold;
+        }
+    }
+
+    #favorites-btn.faved i {
+        color: gold;
+        animation: star-spin 5s ease infinite;
+    }
 }
 
-header .navbar h2 {
-    color: $font-color-primary;
-    padding: $normal-padding;
-}
-
-header .navbar #search-bar {
-    padding: $normal-padding;
-    margin-right: auto;
-    margin-left: 100px;
-}
-
-header .navbar #search-bar .search-btn {
-    border: none;
-    background: transparent;
-    color: white;
-}
-
-header .navbar #search-bar .search-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.2);
-}
-
-header .navbar #search-bar input {
-    text-align: center;
-    border-radius: 10%;
-}
-
-header .navbar #search-bar input:hover {
-    text-align: center;
-    border-radius: 10%;
-    opacity: 0.95;
-}
-
-header .navbar #favorites-btn {
-    border: none;
-    background: transparent
-}
 
 @keyframes star-spin {
     0% {
@@ -145,20 +160,6 @@ header .navbar #favorites-btn {
     100% {
         transform: rotate(360deg)
     }
-}
-
-header .navbar #favorites-btn i {
-    animation: star-spin 5s ease infinite;
-    color: white;
-}
-
-header .navbar #favorites-btn i:hover {
-    color: gold;
-}
-
-header .navbar #favorites-btn.faved i {
-    color: gold;
-    animation: star-spin 5s ease infinite;
 }
 
 //Hamburger Menu Animation and Positioning
@@ -364,48 +365,4 @@ header .navbar #favorites-btn.faved i {
     transform: scale(1);
     border-radius: 20%;
     transition: all 0.6s ease-in-out;
-}
-
-@media (max-width: 768px) {
-    header .navbar {
-        height: 12vh;
-    }
-
-    body {
-        overflow-y: scroll;
-    }
-
-    .navbar section .menu li #C-F-btn {
-        margin: 0px auto 0px 3%;
-    }
-
-    .navbar section .menu {
-        width: 100vw;
-    }
-
-    .navbar section .menu li#learning-info ul li {
-        width: $sidebar-menu-width-mobile;
-        font-size: $font-size-mid;
-        margin-left: 3%;
-    }
-
-    #info-square {
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 35%;
-        padding: 5%;
-    }
-
-    .navbar section .menu li ul#favorites-menu {
-        margin: 5vh auto 1vh 3vw;
-    }
-
-    .navbar section .menu li ul#favorites-menu li {
-        width: 100%;
-    }
-
-    .navbar section .menu li ul#favorites-menu li p {
-        font-size: $font-size-mid;
-    }
 }

@@ -1,4 +1,4 @@
-import * as apiKeys from '../../sass/api_keys.js';
+import * as apiKeys from '.././api_keys.js';
 
 //uses the openweathermap api to reverse geocode a location entered into the searchbar in the DOM
 //needs the api key hidden as it is currently exposed.

@@ -119,17 +119,18 @@
       <!--TEMPLATE FOR CARDS BELOW-->
       <template id="main-card-template">
         <section class="weather-card %VISABILITYCLASS%">
-          <ul class="day flex-it">
-            <li class="weekday">%DAYOFWEEK%</li>
-            <li class="date">%MONTH%, %DAY%</li>
-          </ul>
-          <figure class="img flex-it">
-            <img class="weather-icon"
-              src="https://www.weatherbit.io/static/img/icons/c03d.png"
-              alt="weather icons" />
-          </figure>
-
-          <ul class="misc">
+          <ul>
+            <li>
+              <ul class="day flex-it">
+                <li class="weekday">%DAYOFWEEK%</li>
+                <li class="date">%MONTH%, %DAY%</li>
+              </ul>
+            </li>
+            <li class="img flex-it">
+              <img class="weather-icon"
+                src="https://www.weatherbit.io/static/img/icons/c03d.png"
+                alt="weather icons" />
+            </li>
             <li class="temp">
               <i class="fa-solid fa-temperature-half"></i> %HIGH% -
               %LOW% %TEMPMES%
@@ -143,6 +144,9 @@
             </li>
 
             <li class="desc">%DESC%</li>
+          </ul>
+
+          <ul class="misc">
             <li class="wind">
               <i class="fa-solid fa-wind"></i>Wind: %WIND_DIR% %WIND_SPD%
               %WINDMES%
@@ -162,11 +166,11 @@
               %VISMES%
             </li>
             <li class="uv-index">
-              <i class="fa-solid fa-sun"></i>UV Index: %UV%
+              <i class="fa-solid fa-sun"></i>UV-Index: %UV%
             </li>
             </li>
             </li>
-        </section>
+          </ul>
       </template>
       <template id="info-square-template">
         <p>
@@ -179,8 +183,6 @@
             class="fa-solid fa-heart fa-2x"></i>
         </li>
       </template>
-      <span class="copyright"><i class="fa-solid fa-copyright"></i>
-        Christopher Goldsmith 2022</span>
     </footer>
   </body>
 
