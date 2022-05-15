@@ -2,11 +2,24 @@
 //likely decomissioning
 export const dom = {
   cfBtn: '#C-F',
+  searchBar: "'.search'",
   leftBtn: '#left',
   rightBtn: '#right',
   searchBtn: '#search-btn',
   locationName: '#location-name',
+  toggler: '.toggler',
+  favoritesBtn: '#favorites-btn',
+  favoritesTemplate: '#favorites-template',
+  favoritesMenu: '#favorites-menu',
+  infoSquare: '#info-square',
+  infoSquareTemplate: '#info-square-template',
+  mainCardTemplte: '#main-card-template'
+
 };
+
+export const clearSearchBar = () => {
+  const val = $('.search').val('');
+}
 
 
 //changing to json

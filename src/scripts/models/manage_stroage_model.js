@@ -1,3 +1,5 @@
+import { dom } from "../views/dom";
+
 export const getFavorites = () => {
     if (!localStorage.getItem('favorites')) return;
     const favorites = JSON.parse(localStorage.getItem('favorites'));
@@ -8,7 +10,7 @@ export const getFavorites = () => {
 export const checkForFavoritesOnLoad = () => {
     if (!localStorage.getItem('favorites')) return;
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    const favoriteName = $('#location-name').text();
+    const favoriteName = $(dom.locationName).text();
     if (favorites.indexOf(favoriteName) == true ||
         favorites.indexOf(favoriteName) == 0) return true;
 }
@@ -18,7 +20,7 @@ export const manageFavorites = () => {
     //create the favorites array;
     if (!localStorage.getItem('favorites')) localStorage.setItem('favorites', JSON.stringify([]))
 
-    const favoriteToAdd = $('#location-name').text();
+    const favoriteToAdd = $(dom.locationName).text();
 
     let favorites = JSON.parse(localStorage.getItem('favorites'));
     //checks to see if duplicates of the favorite to add are present in the localstorage favorites array
@@ -45,7 +47,7 @@ export const setOrGetDefaultLocation = (setOrGet) => {
     if (setOrGet !== 'set' && setOrGet !== 'get') return alert('error');
 
     //get location from the current h2 element.
-    const locationFromTitle = $('#location-name').text();
+    const locationFromTitle = $(dom.locationName).text();
 
     if (setOrGet == 'get') {
         let currentDefault = localStorage.getItem('defaultLocation');

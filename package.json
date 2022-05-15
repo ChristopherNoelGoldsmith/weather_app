@@ -1,31 +1,43 @@
 {
-  "name": "weather",
+  "name": "myportfolio",
   "version": "1.0.0",
-  "description": "A basic weather reading app using weatherbit.io api",
-  "main": "./scripts/app.js",
+  "description": "A portfolio of the projects I've worked on",
+  "private": true,
   "scripts": {
-    "test": "node app.js",
-    "sass": "sass --watch ./sass:./styles --style compressed --no-source-map"
+    "build": "webpack",
+    "sass": "sass --watch src/sass:src/styles --style compressed --no-source-map",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChristopherNoelGoldsmith/weather_app.git"
   },
   "keywords": [
-    "weather",
-    "first",
-    "issue",
+    "christopher",
+    "goldsmith",
     "jquery",
-    "vanilla",
-    "js"
+    "javascript",
+    "react",
+    "css",
+    "sass",
+    "node",
+    "html"
   ],
-  "author": "Christopher Goldsmith",
+  "author": "Christopher Noel Goldsmith",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ChristopherNoelGoldsmith/weather_app/issues"
+    "url": "https://github.com/ChristopherNoelGoldsmith/myportfolio/issues"
   },
-  "homepage": "https://github.com/ChristopherNoelGoldsmith/weather_app#readme",
-  "dependencies": {
-    "dotenv": "^16.0.0"
+  "homepage": "https://github.com/ChristopherNoelGoldsmith/myportfolio#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "path": "^0.12.7",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
   }
 }

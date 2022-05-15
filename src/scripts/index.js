@@ -1,3 +1,7 @@
+import '../sass/main.scss';
+import '../sass/cards_arrows.scss';
+
+
 //Location controller could become
 //Params = default or location string
 //checks for string to convert through geolocation/if false useses default location
@@ -13,7 +17,7 @@ import * as manageStorageModel from './models/manage_stroage_model.js'
 import * as manageStorageView from './views/manage_storage_view.js'
 import { toggleCelcFaren } from './views/C_F_btn_views.js'
 import { changeArrows } from './views/side_arrows.js';
-import { dom } from './views/dom.js';
+import { dom, clearSearchBar } from './views/dom.js';
 
 
 //connects to the api, retrives the data then parses it.
@@ -54,10 +58,9 @@ const locationController = async (locationLatLong, mesType) => {
 const favoritesListController = () => {
 
   const populate = () => {
-    const favoritesListDOM = '#favorites-menu';
     const favoritesListData = manageStorageModel.getFavorites();
     const favoritesCards = cardManager.createFavoriteCard(favoritesListData);
-    cardManager.createCard(favoritesCards, favoritesListDOM);
+    cardManager.createCard(favoritesCards, dom.favoritesMenu);
   }
 
   const checkIfFavorite = () => {
@@ -74,9 +77,10 @@ const favoritesListController = () => {
 const addEventListeners = () => {
   //search button
   $(dom.searchBtn).on('click', async () => {
-    const location = $('.search').val();
+    const location = $(dom.searchBar).val();
     console.log(location);
     const mesToggle = toggleCelcFaren();
+    clearSearchBar();
     return activate(location, mesToggle);
   });
   //page left
@@ -89,15 +93,15 @@ const addEventListeners = () => {
     const page = changeArrows('right');
     return cardManager.createCard(page, 'main', false);
   });
-  $('#C-F-btn').on('click', async () => {
+  $(dom.cfBtn).on('click', async () => {
     const mesToggle = toggleCelcFaren(true);
-    const location = $('#location-name').text();
+    const location = $(dom.locationName).text();
     return activate(location, mesToggle);
   });
   //To close leftover elements of the sidebar
-  $('.toggler').on('click', () => cardManager.getInfoCard('remove'));
+  $(dom.toggler).on('click', () => cardManager.getInfoCard('remove'));
   //give funtionality to the favorite button
-  $('#favorites-btn').on('click', () => {
+  $(dom.favoritesBtn).on('click', () => {
     manageStorageModel.manageFavorites();
     manageStorageView.toggleFavoriteStar();
     favoritesListController().populate();
@@ -110,7 +114,7 @@ const addEventListeners = () => {
   sideBarInfoList.forEach(element => {
     return $(`#${element}`).on('click', () => {
       const infoCard = cardManager.getInfoCard(element);
-      return cardManager.createCard(infoCard, "#info-square");
+      return cardManager.createCard(infoCard, dom.infoSquare);
     });
   });
 };

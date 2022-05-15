@@ -1,4 +1,4 @@
-import { domInfoText } from "./dom.js";
+import { dom, domInfoText } from "./dom.js";
 
 export const createMainCards = (data, mes, cardArrIndex) => {
   const {
@@ -69,20 +69,20 @@ export const createMainCards = (data, mes, cardArrIndex) => {
 
 export const getInfoCard = (type = null) => {
   if (type == null) return;
-  let template = $('#info-square-template').html();
+  let template = $(dom.infoSquareTemplate).html();
 
   //accesses the text object using the sidebar list text as a key.
   const text = domInfoText[type];
 
-  if (type == 'remove') return $('#info-square').removeClass('vis');
-  $('#info-square').addClass('vis');
+  if (type == 'remove') return $(dom.infoSquare).removeClass('vis');
+  $(dom.infoSquare).addClass('vis');
 
   template = template.replace(/%INFOSQUARE%/, text);
   return [template];
 };
 
 export const createFavoriteCard = (fav) => {
-  let template = $('#favorites-template').html();
+  let template = $(dom.favoritesTemplate).html();
   template = fav.map(el => {
     return template.replace(/%FAVORITES%/, el)
   })
@@ -100,5 +100,5 @@ export const createCard = (cards, type) => {
 //changes text in navbar upon a search request
 export const changeTitle = (state, city, country) => {
   const text = `${city}, ${state} - ${country}`;
-  return $('#location-name').text(text);
+  return $(dom.locationName).text(text);
 };
