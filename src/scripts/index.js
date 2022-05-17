@@ -1,5 +1,6 @@
 import '../sass/main.scss';
 import '../sass/cards_arrows.scss';
+import regeneratorRuntime from "regenerator-runtime";
 
 
 //Location controller could become
