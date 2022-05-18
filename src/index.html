@@ -26,7 +26,7 @@
         <section id="hamburger-container">
           <input type="checkbox" class="toggler" name="hamburger-init"
             id="toggler">
-            <!--Hamburger button-->
+          <!--Hamburger button-->
           <div class="hamburger">
             <div></div>
           </div>
@@ -43,7 +43,7 @@
                 </span>
               </button></li>
             <!--The blocks that appear with general infornmation about the weather params-->
-              <li id="learning-info">
+            <li id="learning-info">
               <ul>
                 <li id="humidity-info"><i class="fa-solid fa-water"></i>
                   <p>Humidity?</p>
@@ -62,13 +62,15 @@
                   <i class="fa-solid fa-chevron-right"></i>
                 </li>
                 <li id="uv-info"><i class="fa-solid fa-sun"></i>
-                  <p>UV Index?</p> <i class="fa-solid fa-chevron-right"></i></li>
+                  <p>UV Index?</p> <i
+                    class="fa-solid fa-chevron-right"></i>
+                </li>
               </ul>
             </li>
             <!--The container of the favorites menu-->
             <li id="favorites-container">
               <ul id="favorites-menu">
-                
+
               </ul>
             </li>
           </ul>
@@ -77,19 +79,19 @@
         <section id="search-bar">
           <form id="search-form">
             <input type="search" placeholder="City*, State, Country"
-            class="search" />
-          <button class="search-btn">
-            <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
-          </button>
-          <button id="favorites-btn" class=""><i
-              class="favorite-star fa-solid fa-star"></i>
-          </button>
-        </form>
-           <!--Title/location name-->
-        <h2 id="location-name">Lorem - kippsum ipsum dolor</h2>
+              class="search" />
+            <button class="search-btn">
+              <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+            </button>
+            <button id="favorites-btn" class=""><i
+                class="favorite-star fa-solid fa-star"></i>
+            </button>
+          </form>
+          <!--Title/location name-->
+          <h2 id="location-name">Lorem - kippsum ipsum dolor</h2>
         </section>
 
-       
+
 
       </nav>
     </header>
@@ -136,7 +138,7 @@
               <figure>
                 <i class="fa-solid fa-cloud-sun-rain fa-2x"></i><progress
                   min="0" max="100" value="%PRECIP%"></progress>
-                %PRECIP%%
+                <span>%PRECIP%%</span>
               </figure>
             </li>
 
@@ -145,30 +147,33 @@
 
           <ul class="misc">
             <li class="wind">
-              <i class="fa-solid fa-wind"></i><span>Wind: %WIND_DIR% %WIND_SPD%</span> 
+              <i class="fa-solid fa-wind"></i><span>Wind: %WIND_DIR%
+                %WIND_SPD%</span>
               %WINDMES%
             </li>
             <li class="humidity">
-              <i class="fa-solid fa-water"></i><span>Humidity: %HUMIDITY%%</span> 
+              <i class="fa-solid fa-water"></i><span>Humidity:
+                %HUMIDITY%%</span>
             </li>
             <li class="pressure">
-              <i class="fa-solid fa-circle"></i><span>Pressure: %PRESSURE%</span> 
+              <i class="fa-solid fa-circle"></i><span>Pressure:
+                %PRESSURE%</span>
             </li>
             <li class="dewpoint">
               <i class="fa-solid fa-droplet"></i><span>Dewpoint:
-                %DEWPOINT%%DEWPOINTMES%</span> 
+                %DEWPOINT%%DEWPOINTMES%</span>
             </li>
             <li class="visability">
               <i class="fa-solid fa-eye"></i><span>Visability: %VISABILITY%
-                %VISMES%</span> 
+                %VISMES%</span>
             </li>
             <li class="uv-index">
-              <i class="fa-solid fa-sun"></i> <span>UV-Index: %UV%</span> 
+              <i class="fa-solid fa-sun"></i> <span>UV-Index: %UV%</span>
             </li>
             </li>
             </li>
           </ul>
-          </section>
+        </section>
       </template>
       <template id="info-square-template">
         <p>

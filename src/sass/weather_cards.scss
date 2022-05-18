@@ -31,6 +31,7 @@ main {
   justify-content: center;
   width: 100vw;
   height: 100vh;
+
   #container {
     display: flex;
     flex-direction: row;
@@ -44,22 +45,23 @@ main {
       display: none;
       flex-direction: column;
       width: 17vw;
-      height: 70vh;
       font-size: main.$font-size-small;
       margin: 0.5%;
       opacity: 0;
       transition: all 0.4s ease;
+      padding: 1%;
 
       ul {
         padding-left: 0;
         list-style: none;
-        margin: 1vh 0;
+        margin: 0.5vh 0;
         padding: main.$normal-padding * 2;
 
         li ul.day {
           justify-content: center;
           align-items: center;
           padding: 5px;
+          margin: 0.2vh 0;
           flex-direction: column;
           font-size: main.$font-size-mid;
         }
@@ -84,9 +86,19 @@ main {
         li.precipitation {
           text-align: center;
 
-          progress {
-            width: 50%;
+          figure {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            progress {
+              width: 70%;
+              margin: 1vh 5px;
+              height: 2vh;
+            }
           }
+
         }
 
         //The description of the forcast
@@ -94,7 +106,8 @@ main {
           text-align: center;
           font-size: main.$font-size-mid;
           border-bottom: 1px main.$secondary-color solid;
-          margin-bottom: 3px;
+          margin: 0.5vh 0;
+          line-height: 2rem;
         }
       }
 
@@ -103,9 +116,8 @@ main {
         li {
           width: 14vw;
           text-align: justify;
-          padding: 5%;
+          padding: 1vh 1vw;
           font-size: main.$font-size-mid;
-          border-bottom: 1px dotted ivory;
         }
       }
     }
@@ -125,6 +137,7 @@ main {
 
   main {
     justify-content: start;
+
     #container {
       display: flex;
       flex-direction: column;
@@ -156,10 +169,12 @@ main {
             align-items: center;
             font-size: main.$font-size-small;
             border: none;
+
             span {
               margin-top: 5%;
-              width: 200%;
+              width: 150%;
             }
+
             i {
               font-size: main.$font-size-mid;
             }
