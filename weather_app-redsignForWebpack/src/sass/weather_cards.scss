@@ -1,0 +1,171 @@
+@use "main";
+
+li {
+  list-style: none;
+}
+
+//for the .weather-icon animation
+@keyframes bob-up-down {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(2vh);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+i {
+  margin-right: 3px;
+}
+
+//Styles for the main wethaer cards;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  #container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: none;
+
+    .weather-card {
+      border-radius: 10px;
+      background: main.$main-color;
+      display: none;
+      flex-direction: column;
+      width: 17vw;
+      height: 70vh;
+      font-size: main.$font-size-small;
+      margin: 0.5%;
+      opacity: 0;
+      transition: all 0.4s ease;
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+        margin: 1vh 0;
+        padding: main.$normal-padding * 2;
+
+        li ul.day {
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          flex-direction: column;
+          font-size: main.$font-size-mid;
+        }
+
+        li.img {
+          .weather-icon {
+            animation-name: bob-up-down;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+          }
+        }
+
+        //Tempurature line
+        li.temp {
+          text-align: center;
+          align-items: center;
+          font-size: main.$font-size-mid;
+        }
+
+        //Precipitation line
+        li.precipitation {
+          text-align: center;
+
+          progress {
+            width: 50%;
+          }
+        }
+
+        //The description of the forcast
+        li.desc {
+          text-align: center;
+          font-size: main.$font-size-mid;
+          border-bottom: 1px main.$secondary-color solid;
+          margin-bottom: 3px;
+        }
+      }
+
+      //The Details for the Weather Cards
+      .misc {
+        li {
+          width: 14vw;
+          text-align: justify;
+          padding: 5%;
+          font-size: main.$font-size-mid;
+          border-bottom: 1px dotted ivory;
+        }
+      }
+    }
+
+    .weather-card.visable {
+      display: flex;
+      opacity: 1;
+      transition: all 0.4s ease;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: scroll;
+  }
+
+  main {
+    justify-content: start;
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 0;
+
+      .weather-card {
+        margin: 11vh 0;
+        height: 70vh;
+        width: 80vw;
+        min-height: 575px;
+        flex-direction: column;
+
+        .misc {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+
+          li {
+            height: 5vh;
+            width: 15vw;
+            text-align: center;
+            margin: 10% 4%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: main.$font-size-small;
+            border: none;
+            span {
+              margin-top: 5%;
+              width: 200%;
+            }
+            i {
+              font-size: main.$font-size-mid;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@use "main";
+//Below are the arrow buttons for desktop
+#left-right-btn {
+  button {
+    border: transparent;
+    background: transparent;
+    z-index: 100;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  button#left {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    height: 10%;
+  }
+
+  button#right {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    height: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  #left-right-btn {
+    display: none;
+  }
+}
