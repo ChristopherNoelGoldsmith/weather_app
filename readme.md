@@ -15,10 +15,27 @@
 - Jquery
 - Sass
 
-## TO DO LIST
+# BASIC ARCHITECTURE GUIDE
 
-- [x] Fix day of the week display.
-- [] Add default location function to the hearts.
-- [] Improve Searchbar styles on mobile.
-- [x] Include a favorites list in sidebar menu.
-- [x] Add imperial to metric measure toggle.
+### INDEX.JS
+
+The index.js file in this project is bulky. It holds the paths for the webpack config, and is the controller for all actions. The event listener bindings, and the functions connecting the APIs together are present in this file.
+
+### GET_FORCAST.JS
+
+Holds the logic connecting to the APIs
+
+- ReverseGeocoding API - openweathermap
+- Weather API - weatherbit.io
+
+### PARSE_INFO.JS
+
+Holds the logic to parse the data recieved from the api which is then passed to the card_manager.js to convert into a DOM element.
+
+### CARD_MANAGER.JS
+
+The file containing he logic to manipulate the AI via generating dom elements. Weather cards and all things generated via the hamburger menu.
+
+### MANAGE_STORAGE.JS
+
+Holds the logic for favorites menu. The favorites menu uses the localStorage API to keep track of locations held in the favorites menu.

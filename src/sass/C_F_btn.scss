@@ -11,9 +11,11 @@ nav.navbar section .menu li {
     border-radius: 30%;
     margin: auto 5%;
   }
+
   #C-F-btn:hover {
     opacity: 0.7;
   }
+
   //Toggles display for cel and far button to control imperial vs metric measurement
   //Upon click the javascript with change the class of #C-F-btn to C or F then the CSS takes effect
   .C .c-unit,
@@ -27,15 +29,18 @@ nav.navbar section .menu li {
     z-index: 1000;
     transition: all 0.5s ease;
   }
+
   .c-unit,
   .f-unit {
     font-size: main.$font-size-large;
     display: none;
   }
+
   button.C .c-unit {
     display: inherit;
     background: cyan;
   }
+
   button.F .f-unit {
     display: inherit;
     background: crimson;
@@ -49,6 +54,10 @@ nav.navbar section .menu li {
 
   .navbar section .menu {
     width: 100vw;
+
+    label {
+      font-size: 1.5rem;
+    }
   }
 
   .navbar section .menu li#learning-info ul li {

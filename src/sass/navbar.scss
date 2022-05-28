@@ -13,6 +13,7 @@ header .navbar {
   background: main.$main-color;
   border-bottom: 2px solid main.$secondary-color;
   overflow: none;
+
   section#search-bar {
     display: flex;
     flex-direction: row;
@@ -20,37 +21,45 @@ header .navbar {
     align-items: center;
     width: 100vw;
     margin: 0 3vw;
+
     h2 {
       color: main.$font-color-primary;
       padding: main.$normal-padding;
     }
+
     form#search-form {
       display: flex;
       justify-content: center;
       align-items: center;
+
       * {
         margin: 2%;
       }
+
       .search-btn {
         border: none;
         background: transparent;
         color: white;
         font-size: main.$font-size-mid;
       }
+
       .search-btn:hover {
         opacity: 0.9;
         transform: scale(1.2);
       }
+
       input {
         text-align: center;
         border-radius: 5px;
         padding: main.$normal-padding;
       }
+
       input:hover {
         text-align: center;
         border-radius: 10%;
         opacity: 0.95;
       }
+
       #favorites-btn {
         border: none;
         background: transparent;
@@ -158,6 +167,7 @@ header .navbar {
       align-items: center;
       text-align: justify;
     }
+
     //Styles for the information list in the menu
     li#learning-info ul li {
       text-align: justify;
@@ -169,34 +179,42 @@ header .navbar {
       border: none;
       margin: 2px;
     }
+
     li#learning-info ul li p {
       padding: 2%;
     }
+
     li#learning-info ul li:hover {
       color: aquamarine;
       opacity: 0.8;
       cursor: pointer;
     }
+
     li#learning-info ul li .fa-chevron-right {
       justify-self: end;
     }
+
     li ul#favorites-menu li {
       font-size: main.$font-size-small;
       width: main.$sidebar-menu-width;
       border-bottom: none;
       cursor: pointer;
     }
+
     li ul#favorites-menu li p {
       color: main.$font-color-primary;
     }
+
     li ul#favorites-menu li p:hover {
       opacity: 0.7;
       color: main.$third-color;
     }
+
     li ul#favorites-menu li i {
       color: main.$third-color;
       margin-left: auto;
     }
+
     li ul#favorites-menu li i:hover {
       color: red;
       transform: scale(1.3);
@@ -206,17 +224,17 @@ header .navbar {
 
 //Hamburger menu toggler
 
-.navbar section .toggler:checked + .hamburger::before,
-.navbar section .toggler:checked + .hamburger::after {
+.navbar section .toggler:checked+.hamburger::before,
+.navbar section .toggler:checked+.hamburger::after {
   top: 0;
   transform: rotate(90deg);
 }
 
-.navbar section .toggler:checked + .hamburger {
+.navbar section .toggler:checked+.hamburger {
   transform: rotate(225deg);
 }
 
-.navbar section .toggler:checked ~ .menu {
+.navbar section .toggler:checked~.menu {
   opacity: 1;
   z-index: 10;
   transform: translateX(0px);
@@ -239,6 +257,17 @@ header .navbar {
   opacity: 1;
   transform: scale(0);
   transition: all 0.6s ease-in-out;
+
+  figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    p {
+      letter-spacing: 0.15rem;
+    }
+  }
 }
 
 #info-square.vis {
@@ -251,55 +280,70 @@ header .navbar {
 
 //Mobile Config
 @media (max-width: 768px) {
+  #info-square {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+
+    figure {
+      width: 100%;
+      height: 100%;
+
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
+
   body header nav.navbar {
     padding: 10% 0;
     height: 10vh;
+
     section#search-bar {
       display: flex;
       flex-direction: column;
       align-content: center;
       justify-content: center;
+
       form#search-form {
         display: flex;
         flex-direction: row;
         align-content: center;
+
         input.search {
           height: 5vh;
         }
+
         button {
           margin: 0 1%;
         }
       }
+
       h2#location-name {
         font-size: main.$font-size-mid;
       }
     }
 
-    .navbar section .menu li#learning-info ul li {
-      width: main.$sidebar-menu-width-mobile;
-      font-size: main.$font-size-mid;
-      margin-left: 3%;
+
+
+
+  }
+
+  .navbar section .menu li ul#favorites-menu {
+    margin: 5vh auto 1vh 3vw;
+    width: 90vw;
+
+    li {
+
       width: 100%;
-    }
+      border-bottom: 2px solid main.$font-color-primary;
+      margin: 1vh 0;
 
-    #info-square {
-      top: 0;
-      left: 50%;
-      width: 50%;
-      height: 35%;
-      padding: 5%;
-    }
-
-    .navbar section .menu li ul#favorites-menu {
-      margin: 5vh auto 1vh 3vw;
-    }
-
-    .navbar section .menu li ul#favorites-menu li {
-      width: 100%;
-    }
-
-    .navbar section .menu li ul#favorites-menu li p {
-      font-size: main.$font-size-mid;
+      p {
+        font-size: main.$font-size-mid;
+      }
     }
   }
 }

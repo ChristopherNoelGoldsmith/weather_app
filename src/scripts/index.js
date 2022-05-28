@@ -80,8 +80,9 @@ const addEventListeners = () => {
     event.preventDefault();
     const location = event.target[0].value;
     const mesToggle = toggleCelcFaren();
-    clearSearchBar(event.target[0].value);
-    return activate(location, mesToggle);
+    activate(location, mesToggle);
+    return event.target[0].value = '';
+
   });
   //page left
   $(dom.leftBtn).on("click", () => {
@@ -100,6 +101,8 @@ const addEventListeners = () => {
   });
   //To close leftover elements of the sidebar
   $(dom.toggler).on("click", () => cardManager.getInfoCard("remove"));
+  $(dom.infoSquare).on("click", () => cardManager.getInfoCard("remove"));
+
   //give funtionality to the favorite button
   $(dom.favoritesBtn).on("click", () => {
     manageStorageModel.manageFavorites();

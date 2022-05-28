@@ -17,7 +17,8 @@ export const dom = {
 };
 
 export const clearSearchBar = (ev) => {
-  return (ev = 0);
+  ev = 0
+  return (ev);
 };
 
 //changing to json
