@@ -15,7 +15,7 @@
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <title>Weather Cards</title>
-  <script defer src="mainc9b686dc21716fe2bd6d.js"></script></head>
+  <script defer src="mainc43052753f1e19c61c22.js"></script></head>
 
   <body>
     <!--NAVABAR-->
@@ -137,8 +137,7 @@
             <li class="precipitation">
               <figure>
                 <i class="fa-solid fa-cloud-sun-rain fa-2x"></i>
-                <progress
-                  min="0" max="100" value="%PRECIP%"></progress>
+                <progress min="0" max="100" value="%PRECIP%"></progress>
                 <span>%PRECIP%%</span>
               </figure>
             </li>
@@ -177,9 +176,11 @@
         </section>
       </template>
       <template id="info-square-template">
-        <p>
-          %INFOSQUARE%
-        </p>
+        <figure>
+          <p>
+            %INFOSQUARE%
+          </p>
+        </figure>
       </template>
       <template id="favorites-template">
         <li class="favorite">
