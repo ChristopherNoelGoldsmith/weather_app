@@ -1,2 +1,0 @@
-export const WEATHER_API_KEY = 'a609c15503594caf96b28d360952f491';
-export const REVGEO_API_KEY = 'fc5bef22a20647438f60b2a29a04d8b5';

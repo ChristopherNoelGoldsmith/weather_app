@@ -81,8 +81,7 @@ const addEventListeners = () => {
     const location = event.target[0].value;
     const mesToggle = toggleCelcFaren();
     activate(location, mesToggle);
-    return event.target[0].value = '';
-
+    return (event.target[0].value = "");
   });
   //page left
   $(dom.leftBtn).on("click", () => {
@@ -131,12 +130,13 @@ const addDynamicEventListeners = () => {
   //Makes favorites in sidebar functional
   $(".favorite").on("click", async (el) => {
     const name = parseInfo.getFavoritesLocationFromText(el.target);
-    activate(name);
+    const mesType = manage_stroage_model.getTempPreference();
+    activate(name, mesType);
   });
 };
 
-//initiates the api and cards //the default value of mesType = 'I' is to default it to imperial measurements
-const activate = async (latLong, mesType = "I") => {
+//initiates the api and cards //the default value of mesType = 'F' is to default it to imperial measurements
+const activate = async (latLong, mesType = "F") => {
   const data = await locationController(latLong, mesType);
   favoritesListController().populate();
   favoritesListController().checkIfFavorite();
