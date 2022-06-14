@@ -1,0 +1,6 @@
+/// this app utilizes two APIs to contribute you can sign up for a API key at both https://www.weatherbit.io/api and https://openweathermap.org/api
+// create a .env file at the top level of the app then copy and paste the variables below with your own keys entered where it says EnterKeyHere
+// be mindfull to leave no spaces just like below
+
+WEATHER_API_KEY=EnterWeatherBitKeyHere
+REVGEO_API_KEY=EnterOpenWeatherKeyHere
